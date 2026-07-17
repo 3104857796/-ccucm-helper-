@@ -8,150 +8,311 @@
 :root {
   --green: #2E7D32;
   --green-light: #4CAF50;
-  --bg: #f0f2f5;
-  --card: #fff;
+  --green-pale: #E8F5E9;
+  --gold: #A68B3C;
+  --gold-light: #F5F0E0;
   --text: #333;
-  --sub: #999;
+  --sub: #888;
   --user-bubble: #2E7D32;
   --bot-bubble: #fff;
+  --lake: #1a6b5a;
+  --sky: #e8f0f8;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: var(--bg);
+  background: linear-gradient(180deg, #d4e8d0 0%, #e8f0e4 30%, #edf2ed 60%, #f0f2f0 100%);
+  background-attachment: fixed;
   height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
+/* 水面光晕装饰 */
+body::before {
+  content: '';
+  position: fixed;
+  top: -120px; left: -80px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(46,125,50,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(166,139,60,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
 
 /* === 头部 === */
 .header {
-  background: linear-gradient(135deg, var(--green), #1B5E20);
+  background: linear-gradient(180deg, #1B5E20 0%, #2E7D32 40%, #38853A 100%);
   color: white;
-  padding: 14px 16px;
+  padding: 18px 16px 14px;
   text-align: center;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
   position: relative;
   z-index: 10;
+  box-shadow: 0 4px 16px rgba(27,94,32,0.2);
+  border-bottom: 3px solid rgba(255,255,255,0.1);
 }
-.header small { font-size:12px; opacity:0.8; display:block; font-weight:400; margin-top:2px; }
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+.header .logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.header .icon-circle {
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  backdrop-filter: blur(4px);
+  border: 2px solid rgba(255,255,255,0.2);
+}
+.header .title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.header .subtitle {
+  font-size: 12px;
+  opacity: 0.85;
+  font-weight: 400;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
 
 /* === 聊天区 === */
 .chat {
   flex: 1;
   overflow-y: auto;
-  padding: 16px;
+  padding: 16px 14px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 1;
+}
+
+/* === 欢迎卡片 === */
+.welcome-card {
+  align-self: center;
+  width: 100%;
+  max-width: 340px;
+  background: linear-gradient(180deg, #fff 0%, #fafff9 100%);
+  border-radius: 20px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  margin-bottom: 4px;
+  animation: fadeUp 0.5s ease;
+}
+.welcome-top {
+  background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 50%, #66BB6A 100%);
+  padding: 20px 18px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.welcome-top::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -30px;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+.welcome-top::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; left: -20px;
+  width: 80px; height: 80px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.welcome-top .w-icon {
+  font-size: 40px;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+.welcome-top .w-title {
+  font-size: 20px; font-weight: 700;
+  position: relative; z-index: 1;
+  letter-spacing: 1px;
+}
+.welcome-top .w-sub {
+  font-size: 13px; opacity: 0.9;
+  position: relative; z-index: 1;
+  margin-top: 4px;
+}
+.welcome-body {
+  padding: 16px 18px;
+  position: relative;
+}
+.welcome-body .greeting-text {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 12px;
+}
+.welcome-body .landmark-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.welcome-body .landmark-tag {
+  font-size: 11px;
+  background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
+  color: #2E7D32;
+  padding: 5px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(46,125,50,0.1);
 }
 
 /* === 气泡 === */
 .bubble {
-  max-width: 82%;
-  padding: 12px 15px;
-  border-radius: 18px;
-  font-size: 15px;
-  line-height: 1.6;
+  max-width: 84%;
+  padding: 12px 16px;
+  border-radius: 20px;
+  font-size: 14.5px;
+  line-height: 1.65;
   word-break: break-word;
   position: relative;
-  animation: fadeUp 0.3s ease;
+  animation: fadeUp 0.35s ease;
 }
-@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 .bubble.user {
   align-self: flex-end;
-  background: var(--user-bubble);
+  background: linear-gradient(135deg, #2E7D32, #43A047);
   color: #fff;
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 2px 8px rgba(46,125,50,0.25);
 }
 .bubble.bot {
   align-self: flex-start;
-  background: var(--bot-bubble);
-  color: var(--text);
-  border-bottom-left-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  background: #fff;
+  color: #333;
+  border-bottom-left-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
 /* === 快捷问题按钮 === */
+.quick-section {
+  align-self: center;
+  width: 100%;
+  max-width: 340px;
+}
+.quick-label {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 8px;
+  text-align: center;
+  letter-spacing: 1px;
+}
 .quick-btns {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 0 4px;
+  justify-content: center;
 }
 .quick-btn {
-  background: var(--card);
-  border: 1px solid #e0e0e0;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
   border-radius: 20px;
-  padding: 8px 14px;
+  padding: 9px 15px;
   font-size: 13px;
-  color: var(--green);
+  color: #2E7D32;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.25s;
   white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  font-family: inherit;
 }
-.quick-btn:hover { background: var(--green); color: #fff; border-color: var(--green); }
-.quick-btn:active { transform: scale(0.96); }
+.quick-btn:hover { background: #2E7D32; color: #fff; border-color: #2E7D32; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(46,125,50,0.2); }
+.quick-btn:active { transform: scale(0.95); }
 
 /* === 输入区 === */
 .input-bar {
-  background: var(--card);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
   padding: 10px 12px;
   display: flex;
   gap: 10px;
   align-items: flex-end;
-  border-top: 1px solid #e8e8e8;
-  box-shadow: 0 -1px 4px rgba(0,0,0,0.04);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+  position: relative;
+  z-index: 10;
 }
 .input-bar textarea {
   flex: 1;
-  border: 1px solid #e0e0e0;
-  border-radius: 22px;
-  padding: 10px 16px;
+  border: 2px solid #e8e8e8;
+  border-radius: 24px;
+  padding: 11px 18px;
   font-size: 15px;
   resize: none;
   outline: none;
   max-height: 100px;
   line-height: 1.4;
   font-family: inherit;
-  transition: border 0.2s;
+  transition: all 0.2s;
+  background: #fafafa;
 }
-.input-bar textarea:focus { border-color: var(--green); }
+.input-bar textarea:focus { border-color: #4CAF50; background: #fff; box-shadow: 0 0 0 3px rgba(76,175,80,0.1); }
 .input-bar button {
-  width: 44px; height: 44px;
+  width: 46px; height: 46px;
   border-radius: 50%;
-  background: var(--green);
+  background: linear-gradient(135deg, #2E7D32, #43A047);
   color: #fff;
   border: none;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   flex-shrink: 0;
   transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 3px 10px rgba(46,125,50,0.3);
 }
-.input-bar button:active { transform: scale(0.92); background: var(--green-light); }
-.input-bar button:disabled { background: #ccc; cursor: not-allowed; }
+.input-bar button:active { transform: scale(0.9); }
+.input-bar button:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
 
 /* === 加载动画 === */
 .typing {
   align-self: flex-start;
-  background: var(--bot-bubble);
-  padding: 14px 18px;
-  border-radius: 18px 18px 18px 4px;
+  background: #fff;
+  padding: 14px 20px;
+  border-radius: 20px 20px 20px 6px;
   display: flex;
   gap: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 .typing span {
   width: 7px; height: 7px;
-  background: #bbb;
+  background: #b0c8b0;
   border-radius: 50%;
   animation: bounce 1.4s infinite ease-in-out;
 }
@@ -159,14 +320,13 @@ body {
 .typing span:nth-child(3) { animation-delay: 0.32s; }
 @keyframes bounce {
   0%, 60%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-6px); }
+  30% { transform: translateY(-8px); }
 }
 
 /* === 密码门 === */
 .password-gate {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.96);
+  position: fixed; inset: 0;
+  background: linear-gradient(180deg, #e8f0e4 0%, #f5f7f4 50%, #fafaf9 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,44 +334,94 @@ body {
   flex-direction: column;
   gap: 16px;
 }
-.password-gate h2 { color: var(--green); font-size: 22px; }
-.password-gate p { color: #777; font-size:14px; text-align:center; max-width:260px; }
+.password-gate::before {
+  content: '';
+  position: absolute;
+  top: 15%; left: 20%;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(46,125,50,0.06) 0%, transparent 60%);
+  border-radius: 50%;
+}
+.password-gate .gate-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 30px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  position: relative;
+  z-index: 1;
+}
+.password-gate .gate-icon { font-size: 48px; margin-bottom: 12px; }
+.password-gate h2 { color: #2E7D32; font-size: 20px; margin-bottom: 6px; }
+.password-gate p { color: #888; font-size: 13px; margin-bottom: 20px; line-height: 1.6; }
 .password-gate input {
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  padding: 12px 16px;
+  border: 2px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 14px 18px;
   font-size: 16px;
-  width: 220px;
+  width: 100%;
   text-align: center;
   outline: none;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  transition: border 0.2s;
+  font-family: inherit;
 }
-.password-gate input:focus { border-color: var(--green); }
+.password-gate input:focus { border-color: #4CAF50; box-shadow: 0 0 0 4px rgba(76,175,80,0.08); }
 .password-gate button {
-  background: var(--green);
+  background: linear-gradient(135deg, #2E7D32, #43A047);
   color: white;
   border: none;
-  border-radius: 12px;
-  padding: 12px 60px;
+  border-radius: 14px;
+  padding: 14px 0;
   font-size: 16px;
   cursor: pointer;
+  width: 100%;
+  margin-top: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  font-family: inherit;
 }
-.password-gate .error { color: #e53935; font-size: 13px; }
+.password-gate button:active { transform: scale(0.97); }
+.password-gate .error { color: #e53935; font-size: 12px; margin-top: 8px; }
 
 /* === 错误提示 === */
 .error-msg {
   align-self: center;
-  color: #e53935;
+  color: #c62828;
   font-size: 13px;
-  background: #ffebee;
+  background: rgba(229,57,53,0.08);
   padding: 8px 16px;
   border-radius: 12px;
-  margin: 8px 0;
+  margin: 4px 0;
+}
+
+/* === 二维码卡片 === */
+.qrcode-card {
+  text-align: center;
+  max-width: 180px;
+  margin: 8px auto 0;
+  background: linear-gradient(180deg, #fafff9, #f5faf5);
+  border-radius: 12px;
+  padding: 10px;
+  border: 1px solid rgba(46,125,50,0.1);
+}
+.qrcode-card img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+.qrcode-card .qrcode-label {
+  font-size: 11px;
+  color: #888;
+  margin-top: 6px;
 }
 
 /* === 响应式 === */
 @media (min-width: 768px) {
-  body { max-width: 500px; margin: 0 auto; border-left: 1px solid #eee; border-right: 1px solid #eee; }
+  body { max-width: 480px; margin: 0 auto; box-shadow: 0 0 60px rgba(0,0,0,0.08); }
 }
 .hidden { display:none !important; }
 </style>
@@ -220,35 +430,61 @@ body {
 
 <!-- 密码验证 -->
 <div id="passGate" class="password-gate hidden">
-  <h2>🔐 需要验证码</h2>
-  <p>请输入新生群内发布的验证码</p>
-  <input id="passInput" type="text" placeholder="请输入验证码" autocomplete="off">
-  <p class="error hidden" id="passError">验证码错误，请重试</p>
-  <button onclick="checkPassword()">确认进入</button>
+  <div class="gate-card">
+    <div class="gate-icon">🌿</div>
+    <h2>杏林之门</h2>
+    <p>欢迎来到长春中医药大学<br>请输入新生群内的通行码</p>
+    <input id="passInput" type="password" placeholder="输入验证码" autocomplete="off" onkeydown="if(event.key==='Enter')checkPassword()">
+    <p class="error hidden" id="passError">通行码不对哦，再试试～</p>
+    <button onclick="checkPassword()">踏入杏林</button>
+  </div>
 </div>
 
 <!-- 头部 -->
-<div class="header" id="headerBar">
-  🏥 <span id="schoolTitle">长春中医药大学</span>
-  <small>新生助手 · <span id="botTitle">小杏</span></small>
+<div class="header">
+  <div class="logo-row">
+    <div class="icon-circle">🌿</div>
+    <span class="title" id="schoolTitle">长春中医药大学</span>
+  </div>
+  <div class="subtitle">新生助手 · <span id="botTitle">小杏</span> · 全天在线</div>
 </div>
 
 <!-- 聊天区 -->
 <div class="chat" id="chatBox">
-  <div class="bubble bot" id="greetingBubble"></div>
-  <div class="quick-btns" id="quickBtns"></div>
+  <!-- 欢迎卡片 -->
+  <div class="welcome-card" id="welcomeCard">
+    <div class="welcome-top">
+      <div class="w-icon">🏛️</div>
+      <div class="w-title">欢迎来到长中医</div>
+      <div class="w-sub">青龙湾畔 · 杏林春暖</div>
+    </div>
+    <div class="welcome-body">
+      <div class="greeting-text" id="greetingText"></div>
+      <div class="landmark-tags">
+        <span class="landmark-tag">🏫 四象城图书馆</span>
+        <span class="landmark-tag">🌊 青龙湾</span>
+        <span class="landmark-tag">🌿 七星百草园</span>
+        <span class="landmark-tag">🍜 杏林餐厅</span>
+      </div>
+    </div>
+  </div>
+  <!-- 快捷问题 -->
+  <div class="quick-section" id="quickSection">
+    <div class="quick-label">✨ 大家都在问</div>
+    <div class="quick-btns" id="quickBtns"></div>
+  </div>
 </div>
 
 <!-- 输入区 -->
 <div class="input-bar">
-  <textarea id="inputBox" rows="1" placeholder="想问什么直接打字…" onkeydown="handleKey(event)"></textarea>
-  <button id="sendBtn" onclick="send()">➤</button>
+  <textarea id="inputBox" rows="1" placeholder="想问什么？比如：报到要带啥？" onkeydown="handleKey(event)"></textarea>
+  <button id="sendBtn" onclick="send()" title="发送">➤</button>
 </div>
 
 <script src="config.js"></script>
 <script>
 // ============================================
-// 配置注入（config.js 中的变量直接可用）
+// 配置注入
 // ============================================
 
 // === 密码 ===
@@ -262,7 +498,6 @@ function checkPassword() {
   const input = document.getElementById('passInput').value.trim();
   if (input === SCHOOL_CONFIG.password) {
     document.getElementById('passGate').classList.add('hidden');
-    // 验证通过后初始化聊天
     initChat();
   } else {
     document.getElementById('passError').classList.remove('hidden');
@@ -271,19 +506,17 @@ function checkPassword() {
 }
 
 // === 聊天状态 ===
-let messages = []; // { role, content }
+let messages = [];
 let isLoading = false;
-
-// === 渲染 ===
 const chatBox = document.getElementById('chatBox');
 
+// === 渲染欢迎语 ===
 function renderGreeting() {
   document.getElementById('schoolTitle').textContent = SCHOOL_CONFIG.schoolShortName;
   document.getElementById('botTitle').textContent = SCHOOL_CONFIG.botName;
   document.title = SCHOOL_CONFIG.schoolShortName + ' - 新生助手';
-  document.getElementById('greetingBubble').innerHTML = SCHOOL_CONFIG.botGreeting.replace(/\n/g, '<br>');
+  document.getElementById('greetingText').innerHTML = SCHOOL_CONFIG.botGreeting.replace(/\n/g, '<br>');
 
-  // 快捷问题
   const questions = [
     '报到需要带什么材料？',
     '宿舍几人间有空调吗？',
@@ -322,40 +555,24 @@ function hideTyping() {
   if (el) el.remove();
 }
 
-function showError(text) {
-  const div = document.createElement('div');
-  div.className = 'error-msg';
-  div.textContent = text;
-  chatBox.appendChild(div);
-  scrollDown();
-}
-
 function scrollDown() {
-  requestAnimationFrame(() => {
-    chatBox.scrollTop = chatBox.scrollHeight;
-  });
+  requestAnimationFrame(() => { chatBox.scrollTop = chatBox.scrollHeight; });
 }
 
-// === 发送消息 ===
-function sendQuick(q) {
-  document.getElementById('inputBox').value = q;
-  send();
-}
+// === 发送 ===
+function sendQuick(q) { document.getElementById('inputBox').value = q; send(); }
 
 async function send() {
   if (isLoading) return;
-
   const inputBox = document.getElementById('inputBox');
   const text = inputBox.value.trim();
   if (!text) return;
 
-  // 添加用户消息
   inputBox.value = '';
   inputBox.style.height = 'auto';
   messages.push({ role: 'user', content: text });
   addBubble(text, 'user');
 
-  // 发送
   isLoading = true;
   document.getElementById('sendBtn').disabled = true;
   showTyping();
@@ -363,14 +580,12 @@ async function send() {
   try {
     const result = await callDeepSeek(messages, SCHOOL_CONFIG);
     hideTyping();
-    // callDeepSeek 已经创建了气泡，这里只做二维码注入和保存
     const processed = injectQRCode(result.fullText);
     result.bubble.innerHTML = processed.replace(/\n/g, '<br>');
     messages.push({ role: 'assistant', content: processed });
   } catch (err) {
     hideTyping();
     console.error(err);
-    // 兜底：本地关键词匹配
     const fallback = localSearch(text);
     const processed = injectQRCode(fallback);
     messages.push({ role: 'assistant', content: processed });
@@ -383,12 +598,8 @@ async function send() {
 
 // === DeepSeek API 调用 ===
 async function callDeepSeek(msgs, config) {
-  // 限制历史轮次
   const recent = msgs.slice(-config.maxHistory * 2);
-
-  // 构造系统提示词
   const guideTips = config.guideTips || {};
-  const qrcodeImage = config.qrcodeImage || '';
 
   const systemPrompt = `你是${config.schoolName}的校园新生助手"${config.botName}"，一个热情贴心的学姐形象。你的任务是用口语化的方式解答新生关于校园的问题。
 
@@ -406,7 +617,7 @@ async function callDeepSeek(msgs, config) {
 - 问兼职/勤工俭学 → ${guideTips.job || guideTips.default || '扫码加入校园兼职群～'}
 - 问考研/考证 → ${guideTips.exam || guideTips.default || '扫码加入学习资料群～'}
 
-引流原则：每次对话最多引导一次，学生拒绝后绝不再推。你的回答结尾说一句引导话术，然后立刻跟上 [SHOW_QRCODE] 这个标记，系统会自动把它替换为二维码图片。
+引流原则：每次对话最多引导一次，学生拒绝后绝不再推。你的回答结尾说一句引导话术，然后立刻跟上 [SHOW_QRCODE] 这个标记。
 
 【知识库】
 ${KNOWLEDGE_BASE}`;
@@ -431,12 +642,8 @@ ${KNOWLEDGE_BASE}`;
     }),
   });
 
-  if (!res.ok) {
-    const errText = await res.text();
-    throw new Error('API Error: ' + res.status + ' ' + errText);
-  }
+  if (!res.ok) throw new Error('API Error: ' + res.status);
 
-  // 流式读取
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let fullText = '';
@@ -446,29 +653,21 @@ ${KNOWLEDGE_BASE}`;
   while (true) {
     const { done, value } = await reader.read();
     if (done) break;
-
     buffer += decoder.decode(value, { stream: true });
     const lines = buffer.split('\n');
     buffer = lines.pop() || '';
-
     for (const line of lines) {
       const trimmed = line.trim();
       if (!trimmed || !trimmed.startsWith('data: ')) continue;
       const dataStr = trimmed.slice(6);
       if (dataStr === '[DONE]') continue;
-
       try {
         const data = JSON.parse(dataStr);
         const delta = data.choices?.[0]?.delta?.content;
-        if (delta) {
-          fullText += delta;
-          bubble.innerHTML = fullText.replace(/\n/g, '<br>');
-          scrollDown();
-        }
-      } catch(e) { /* 忽略 JSON 解析错误 */ }
+        if (delta) { fullText += delta; bubble.innerHTML = fullText.replace(/\n/g, '<br>'); scrollDown(); }
+      } catch(e) {}
     }
   }
-
   return { fullText, bubble };
 }
 
@@ -476,130 +675,76 @@ ${KNOWLEDGE_BASE}`;
 function injectQRCode(text) {
   const img = SCHOOL_CONFIG.qrcodeImage;
   if (!img || !text.includes('[SHOW_QRCODE]')) return text;
-
-  return text.replace(
-    '[SHOW_QRCODE]',
-    `<br><br><div style="text-align:center;max-width:200px;margin:0 auto;">
-      <img src="${img}" style="width:100%;border-radius:8px;" alt="加群二维码">
-      <div style="font-size:12px;color:#999;margin-top:4px;">👆 长按扫码加入</div>
-    </div>`
+  return text.replace('[SHOW_QRCODE]',
+    `<div class="qrcode-card"><img src="${img}" alt="加群二维码"><div class="qrcode-label">👆 长按识别加群</div></div>`
   );
 }
 
-// === 本地兜底搜索 ===
+// === 本地兜底 ===
 function localSearch(query) {
   const kb = KNOWLEDGE_BASE;
   const q = query.toLowerCase();
-
-  // 关键词分区匹配
   const sections = kb.split(/【(.+?)】/);
-  let bestMatch = '';
-  let bestScore = 0;
-
+  let bestMatch = '', bestScore = 0;
   for (let i = 1; i < sections.length; i += 2) {
-    const title = sections[i];
-    const content = sections[i + 1] || '';
+    const title = sections[i], content = sections[i+1] || '';
     const lines = content.split('\n').filter(l => l.trim().startsWith('-'));
-
     for (const line of lines) {
-      const text = line.replace(/^- /, '').toLowerCase();
-      // 简单匹配打分
       let score = 0;
-      const keywords = q.split(/\s+/);
-      for (const kw of keywords) {
+      for (const kw of q.split(/\s+/)) {
         if (kw.length < 2) continue;
-        if (text.includes(kw)) score += 10;
+        if (line.toLowerCase().includes(kw)) score += 10;
         if (title.includes(kw)) score += 5;
       }
-      if (score > bestScore) {
-        bestScore = score;
-        bestMatch = '📌 【' + title + '】\n' + line.replace(/^- /, '');
-      }
+      if (score > bestScore) { bestScore = score; bestMatch = '📌 【' + title + '】\n' + line.replace(/^- /, ''); }
     }
   }
-
-  if (bestScore > 5) {
-    return bestMatch + '\n\n' + (SCHOOL_CONFIG.guideTips?.default || '扫码加入新生群获取更多及时信息哦～') + ' [SHOW_QRCODE]';
-  }
-  return '这个问题我不太确定哦，建议你咨询辅导员或去学校官方公众号查一下～\n\n' + (SCHOOL_CONFIG.guideTips?.default || '也可以加我们新生群，群里学长学姐随时答疑！') + ' [SHOW_QRCODE]';
+  if (bestScore > 5) return bestMatch + '\n\n' + (SCHOOL_CONFIG.guideTips?.default || '扫码加入新生群～') + ' [SHOW_QRCODE]';
+  return '这个问题我不太确定哦，建议咨询辅导员或去学校官方公众号查一下～\n\n' + (SCHOOL_CONFIG.guideTips?.default || '加新生群，随时答疑！') + ' [SHOW_QRCODE]';
 }
 
-// === 键盘事件 ===
+// === 键盘 ===
 function handleKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    send();
-  }
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
 }
-
-// === textarea 自适应高度 ===
 document.getElementById('inputBox').addEventListener('input', function() {
-  this.style.height = 'auto';
-  this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+  this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 100) + 'px';
 });
 
 // === 初始化 ===
 function initChat() {
   renderGreeting();
-
-  // 恢复历史
   const saved = localStorage.getItem('cczyy_chat_history');
   if (saved) {
     try {
       const history = JSON.parse(saved);
       if (Array.isArray(history) && history.length > 0) {
         messages = history;
-        // 清除初始欢迎消息
-        document.getElementById('greetingBubble').innerHTML = '';
-        document.getElementById('quickBtns').innerHTML = '';
-        // 重新渲染历史
+        document.getElementById('welcomeCard').classList.add('hidden');
+        document.getElementById('quickSection').classList.add('hidden');
         chatBox.innerHTML = '';
-        for (const m of messages) {
-          addBubble(m.content, m.role);
-        }
-        // 重新添加快捷按钮区（当消息很少时）
-        if (messages.length <= 2) {
-          renderGreeting();
-        }
+        for (const m of messages) addBubble(m.content, m.role);
       }
     } catch(e) {}
   }
-
-  // 保存历史
   window.addEventListener('beforeunload', () => {
     localStorage.setItem('cczyy_chat_history', JSON.stringify(messages));
   });
 }
 
-// 定时保存
 setInterval(() => {
-  if (messages.length > 0) {
-    localStorage.setItem('cczyy_chat_history', JSON.stringify(messages));
-  }
+  if (messages.length > 0) localStorage.setItem('cczyy_chat_history', JSON.stringify(messages));
 }, 5000);
 
-// 页面加载
-if (!SCHOOL_CONFIG.password) {
-  initChat();
-}
+if (!SCHOOL_CONFIG.password) initChat();
 
-// === 主题色注入 ===
+// === 主题色 ===
 (function() {
-  const root = document.documentElement.style;
-  root.setProperty('--green', SCHOOL_CONFIG.themeColor);
-  // 自动变深色
-  const darken = (hex, amt) => {
-    const num = parseInt(hex.replace('#',''), 16);
-    const r = Math.max(0, (num >> 16) - amt);
-    const g = Math.max(0, ((num >> 8) & 0x00FF) - amt);
-    const b = Math.max(0, (num & 0x0000FF) - amt);
-    return '#' + (0x1000000 + r*0x10000 + g*0x100 + b).toString(16).slice(1);
-  };
-  root.setProperty('--user-bubble', SCHOOL_CONFIG.themeColor);
-  document.querySelector('.header').style.background =
-    `linear-gradient(135deg, ${SCHOOL_CONFIG.themeColor}, ${darken(SCHOOL_CONFIG.themeColor, 40)})`;
+  const c = SCHOOL_CONFIG.themeColor;
+  const d = (h, a) => { const n = parseInt(h.replace('#',''),16); const r = Math.max(0,(n>>16)-a); const g = Math.max(0,((n>>8)&0xFF)-a); const b = Math.max(0,(n&0xFF)-a); return '#'+(0x1000000+r*0x10000+g*0x100+b).toString(16).slice(1); };
+  document.documentElement.style.setProperty('--green', c);
+  document.documentElement.style.setProperty('--user-bubble', c);
 })();
 </script>
-
 </body>
 </html>
