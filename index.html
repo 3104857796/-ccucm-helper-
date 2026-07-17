@@ -22,7 +22,9 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: linear-gradient(180deg, #d4e8d0 0%, #e8f0e4 30%, #edf2ed 60%, #f0f2f0 100%);
+  background:
+    linear-gradient(180deg, rgba(212,232,208,0.9) 0%, rgba(232,240,228,0.9) 30%, rgba(237,242,237,0.9) 60%, rgba(240,242,240,0.9) 100%),
+    url('campus-bg.jpg') center/cover no-repeat;
   background-attachment: fixed;
   height: 100dvh;
   display: flex;
@@ -113,18 +115,6 @@ body::after {
   position: relative;
   z-index: 1;
 }
-/* 校园背景水印 */
-.chat::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: url('campus-bg.jpg') center/cover no-repeat;
-  opacity: 0.12;
-  z-index: 0;
-  pointer-events: none;
-  filter: blur(1px);
-}
-
 /* === 欢迎卡片 === */
 .welcome-card {
   align-self: center;
