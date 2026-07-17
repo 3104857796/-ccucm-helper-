@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>长春中医药大学 - 新生助手</title>
+<link rel="preload" as="image" href="campus-bg.jpg">
+<link rel="preload" as="image" href="qrcode.jpg">
 <style>
 :root {
   --green: #2E7D32;
@@ -204,6 +206,7 @@ body::after {
   animation: fadeUp 0.35s ease;
 }
 @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 .bubble.user {
   align-self: flex-end;
   background: linear-gradient(135deg, #2E7D32, #43A047);
@@ -408,6 +411,7 @@ body::after {
   border-radius: 12px;
   padding: 10px;
   border: 1px solid rgba(46,125,50,0.1);
+  animation: fadeIn 0.6s ease;
 }
 .qrcode-card img {
   width: 100%;
