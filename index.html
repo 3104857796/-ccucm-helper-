@@ -113,6 +113,17 @@ body::after {
   position: relative;
   z-index: 1;
 }
+/* 校园背景水印 */
+.chat::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('campus-bg.jpg') center/cover no-repeat;
+  opacity: 0.05;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(1px);
+}
 
 /* === 欢迎卡片 === */
 .welcome-card {
