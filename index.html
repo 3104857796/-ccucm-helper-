@@ -504,10 +504,18 @@ var _hmt = _hmt || [];
 // 配置注入
 // ============================================
 
-// === 密码 ===
-(function initPassword() {
-  // 先更新密码门文字（根据当前学校主题）
+// === 页面立即初始化（密码门前就显示正确学校） ===
+(function earlyInit() {
   var t = SCHOOL_CONFIG.theme || {};
+  // 头部
+  document.getElementById('schoolTitle').textContent = SCHOOL_CONFIG.schoolShortName;
+  document.getElementById('botTitle').textContent = SCHOOL_CONFIG.botName;
+  document.title = SCHOOL_CONFIG.schoolShortName + ' - 新生助手';
+  var hIcon = document.querySelector('.header .icon-circle');
+  if (t.headerIcon && hIcon) hIcon.textContent = t.headerIcon;
+  var hdr = document.querySelector('.header');
+  if (t.headerGradient) hdr.style.background = t.headerGradient;
+  // 密码门
   var pTitle = document.querySelector('.password-gate h2');
   var pIcon = document.querySelector('.password-gate .gate-icon');
   var pBtn = document.querySelector('.password-gate button');
@@ -516,6 +524,37 @@ var _hmt = _hmt || [];
   if (t.passwordIcon && pIcon) pIcon.textContent = t.passwordIcon;
   if (t.passwordBtn && pBtn) pBtn.textContent = t.passwordBtn;
   if (pDesc) pDesc.innerHTML = '欢迎来到' + SCHOOL_CONFIG.schoolName + '<br>请输入新生群内的通行码';
+  // 欢迎卡片
+  var wIcon = document.querySelector('.welcome-top .w-icon');
+  var wTitle = document.querySelector('.welcome-top .w-title');
+  var wSub = document.querySelector('.welcome-top .w-sub');
+  if (t.welcomeIcon && wIcon) wIcon.textContent = t.welcomeIcon;
+  if (t.welcomeTitle && wTitle) wTitle.textContent = t.welcomeTitle;
+  if (t.welcomeSubtitle && wSub) wSub.textContent = t.welcomeSubtitle;
+  if (t.headerGradient) {
+    var wTop = document.querySelector('.welcome-top');
+    if (wTop) wTop.style.background = t.headerGradient;
+  }
+  // 地标标签
+  var tags = document.querySelectorAll('.landmark-tag');
+  var imgs = SCHOOL_CONFIG.campusImages;
+  if (imgs && imgs.length >= 3 && tags.length >= 3) {
+    for (var j=0; j<3; j++) {
+      tags[j].innerHTML = '<img src="'+imgs[j]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="">';
+      tags[j].style.cssText = 'padding:3px;width:32%;';
+    }
+  } else if (t.landmarkLabels && tags.length >= t.landmarkLabels.length) {
+    for (var k=0; k<Math.min(tags.length, t.landmarkLabels.length); k++) {
+      tags[k].textContent = t.landmarkLabels[k];
+    }
+  }
+  // 背景图
+  if (t.bgImage) {
+    var overlay = 'linear-gradient(180deg, rgba(212,232,208,0.9) 0%, rgba(232,240,228,0.9) 30%, rgba(237,242,237,0.9) 60%, rgba(240,242,240,0.9) 100%)';
+    document.body.style.background = overlay + ', url(' + t.bgImage + ') center/cover no-repeat';
+    document.body.style.backgroundAttachment = 'fixed';
+  }
+  // 密码
   if (SCHOOL_CONFIG.password) {
     document.getElementById('passGate').classList.remove('hidden');
   }
