@@ -24,9 +24,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-  background:
-    linear-gradient(180deg, rgba(212,232,208,0.9) 0%, rgba(232,240,228,0.9) 30%, rgba(237,242,237,0.9) 60%, rgba(240,242,240,0.9) 100%),
-    url('campus-bg.jpg') center/cover no-repeat;
+  background: linear-gradient(180deg, #d4e8d0 0%, #e8f0e4 30%, #edf2ed 60%, #f0f2f0 100%);
   background-attachment: fixed;
   height: 100dvh;
   display: flex;
@@ -733,8 +731,32 @@ document.getElementById('inputBox').addEventListener('input', function() {
   this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 100) + 'px';
 });
 
+// === 校园主题应用 ===
+function applySchoolTheme() {
+  var cfg = SCHOOL_CONFIG;
+  // 校园背景图
+  if (cfg.bgImage) {
+    document.body.style.background =
+      'linear-gradient(180deg, rgba(212,232,208,0.9) 0%, rgba(232,240,228,0.9) 30%, rgba(237,242,237,0.9) 60%, rgba(240,242,240,0.9) 100%), url(' + cfg.bgImage + ') center/cover no-repeat';
+    document.body.style.backgroundAttachment = 'fixed';
+  }
+  // 欢迎卡片地标：有实拍图就用图，没有就显示文字标签
+  var tags = document.querySelectorAll('.landmark-tag');
+  var showText = !cfg.campusImages || cfg.campusImages.length < 3;
+  if (!showText && tags.length >= 3) {
+    var imgs = cfg.campusImages.slice(0,3);
+    tags[0].innerHTML = '<img src="'+imgs[0]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="校园风景">';
+    tags[0].style.cssText = 'padding:3px;width:32%;';
+    tags[1].innerHTML = '<img src="'+imgs[1]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="校园风景">';
+    tags[1].style.cssText = 'padding:3px;width:32%;';
+    tags[2].innerHTML = '<img src="'+imgs[2]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="校园风景">';
+    tags[2].style.cssText = 'padding:3px;width:32%;';
+  }
+}
+
 // === 初始化 ===
 function initChat() {
+  applySchoolTheme();
   renderGreeting();
   const saved = localStorage.getItem('cczyy_chat_history');
   if (saved) {
