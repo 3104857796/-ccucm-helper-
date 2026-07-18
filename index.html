@@ -632,16 +632,12 @@ ${KNOWLEDGE_BASE}`;
     ...recent,
   ];
 
-  // 优先走代理（Key安全），本地测试时直连
-  const apiUrl = config.apiProxyUrl || 'https://api.deepseek.com/chat/completions';
-  const headers = { 'Content-Type': 'application/json' };
-  if (config.deepseekApiKey) {
-    headers['Authorization'] = 'Bearer ' + config.deepseekApiKey;
-  }
-
-  const res = await fetch(apiUrl, {
+  const res = await fetch('https://api.deepseek.com/chat/completions', {
     method: 'POST',
-    headers,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + config.deepseekApiKey,
+    },
     body: JSON.stringify({
       model: config.deepseekModel,
       messages: apiMessages,
