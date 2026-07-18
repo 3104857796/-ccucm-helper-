@@ -17,6 +17,9 @@ const SCHOOLS = {
     password: 'cczyy2026',
     qrcodeImage: 'qrcode.jpg',
     campusImages: [], // 装饰图，可加多个
+    qrCodes: [
+      { image: 'qrcode.jpg', label: '新生总群' },
+    ],
     theme: {
       headerGradient: 'linear-gradient(180deg, #1B5E20 0%, #2E7D32 40%, #38853A 100%)',
       headerIcon: '🌿',
@@ -33,11 +36,7 @@ const SCHOOLS = {
       passwordBtn: '踏入杏林',
     },
     guideTips: {
-      default: '有需要随时找我，扫码加入新生群，群里信息更及时～',
-      study:   '关于这个，扫码加入学业交流群，里面有各专业学长学姐分享经验～',
-      club:    '你对社团感兴趣呀！扫码加入社团群，百团纳新第一时间通知你～',
-      job:     '想做兼职的话，扫码加入校园兼职群，都是学校审核过的靠谱信息～',
-      exam:    '扫码加入学习资料共享群，有考研考证资料和学长经验帖～',
+      default: '有需要随时找我，看看下方群码，扫码进群信息更及时～',
     },
     knowledgeBase: `
 长春中医药大学新生常见问答知识库
@@ -144,6 +143,7 @@ const SCHOOLS = {
     password: 'jlny2026', // 需要验证码才能使用
     qrcodeImage: '', // 群码后续补充
     campusImages: ['img/jlau/01.jpg', 'img/jlau/02.jpg', 'img/jlau/03.jpg'],
+    qrCodes: [],
     theme: {
       headerGradient: 'linear-gradient(180deg, #33691E 0%, #558B2F 40%, #7CB342 100%)',
       headerIcon: '🌾',
@@ -161,10 +161,6 @@ const SCHOOLS = {
     },
     guideTips: {
       default: '有需要随时找我，加入新生群获取更多及时信息哦～',
-      study:   '关于这个，加入学业交流群，里面有各专业学长学姐分享经验～',
-      club:    '你对社团感兴趣呀！加入社团群，招新第一时间通知你～',
-      job:     '想做兼职的话，加入校园兼职群，都是学校审核过的靠谱信息～',
-      exam:    '加入学习资料共享群，有考研考证资料和学长经验帖～',
     },
     knowledgeBase: `
 吉林农业大学新生常见问答知识库
