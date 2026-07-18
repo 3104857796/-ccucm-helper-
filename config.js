@@ -48,7 +48,7 @@ const SCHOOL_CONFIG = {
 
   // ---- 访问统计 ----
   // 去 tongji.baidu.com 注册，添加网站，获取统计ID（hm.js?后面的那串）
-  baiduTongjiId: '',
+  baiduTongjiId: '3993e9a5104c91773de1c9b07662439b',
 
   // ---- 高级设置（一般不用改）----
   deepseekModel: 'deepseek-chat',
