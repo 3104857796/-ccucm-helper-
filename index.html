@@ -800,27 +800,8 @@ function applySchoolTheme() {
 function initChat() {
   applySchoolTheme();
   renderGreeting();
-  const saved = localStorage.getItem('cczyy_chat_history');
-  if (saved) {
-    try {
-      const history = JSON.parse(saved);
-      if (Array.isArray(history) && history.length > 0) {
-        messages = history;
-        document.getElementById('welcomeCard').classList.add('hidden');
-        document.getElementById('quickSection').classList.add('hidden');
-        chatBox.innerHTML = '';
-        for (const m of messages) addBubble(m.content, m.role);
-      }
-    } catch(e) {}
-  }
-  window.addEventListener('beforeunload', () => {
-    localStorage.setItem('cczyy_chat_history', JSON.stringify(messages));
-  });
+  // 每次进入都是新对话，不保存历史
 }
-
-setInterval(() => {
-  if (messages.length > 0) localStorage.setItem('cczyy_chat_history', JSON.stringify(messages));
-}, 5000);
 
 if (!SCHOOL_CONFIG.password) initChat();
 
