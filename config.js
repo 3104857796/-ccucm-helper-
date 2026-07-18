@@ -161,7 +161,7 @@ const SCHOOLS = {
     botGreeting: '嗨～欢迎来到吉林农业大学！🌾 我是你的校园小助手"小禾"，关于报到、宿舍、食堂、军训、选课、社团……想问什么尽管打字问我，我看到秒回你哦～',
     password: 'jlny2026', // 需要验证码才能使用
     qrcodeImage: '', // 群码后续补充
-    campusImages: ['img/jlau/01.jpg', 'img/jlau/02.jpg', 'img/jlau/03.jpg'],
+    campusImages: ['img/jlau/01.jpg', 'img/jlau/02.jpg', 'img/jlau/03.jpg', 'img/jlau/dorm.jpg'],
     qrCodes: [],
     theme: {
       headerGradient: 'linear-gradient(180deg, #33691E 0%, #558B2F 40%, #7CB342 100%)',
@@ -193,6 +193,7 @@ const SCHOOLS = {
 - 学费因专业不同各异，具体以录取通知书为准。
 
 【宿舍】
+- 宿舍实拍照片：回答时可加 `[IMG:img/jlau/dorm.jpg]` 展示。
 - 本科新生多为6人间（780元/年）或8人间（560元/年），上下铺，每人配铁皮柜子，宿舍配一张桌子、三把椅子、一个晾衣架。
 - 好消息！学校2026年暑假已完成全校学生寝室电力增容和线路改造，**空调已安装**。建议仍自备小风扇备用。
 - 无独立卫浴，每层楼有两个公共卫生间、一台热水机、两个公用吹风机，一楼有洗衣房。
