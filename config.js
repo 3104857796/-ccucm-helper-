@@ -43,8 +43,10 @@ const SCHOOL_CONFIG = {
   },
 
   // ---- DeepSeek API 设置 ----
-  // 去 https://platform.deepseek.com 注册，充10块钱，创建API Key填在这里
-  deepseekApiKey: 'sk-98b30a845b9242969b69aaf517273af6',
+  // API Key 现在存在 Vercel 环境变量中，前端不再暴露
+  // 本地测试时临时填这里，上线前删除
+  deepseekApiKey: '', // 上线后留空，通过后端代理转发
+  apiProxyUrl: '/api/proxy', // 代理地址（Vercel 自动处理）
 
   // ---- 高级设置（一般不用改）----
   deepseekModel: 'deepseek-chat',
