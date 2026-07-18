@@ -506,6 +506,16 @@ var _hmt = _hmt || [];
 
 // === 密码 ===
 (function initPassword() {
+  // 先更新密码门文字（根据当前学校主题）
+  var t = SCHOOL_CONFIG.theme || {};
+  var pTitle = document.querySelector('.password-gate h2');
+  var pIcon = document.querySelector('.password-gate .gate-icon');
+  var pBtn = document.querySelector('.password-gate button');
+  var pDesc = document.querySelector('.password-gate p');
+  if (t.passwordTitle && pTitle) pTitle.textContent = t.passwordTitle;
+  if (t.passwordIcon && pIcon) pIcon.textContent = t.passwordIcon;
+  if (t.passwordBtn && pBtn) pBtn.textContent = t.passwordBtn;
+  if (pDesc) pDesc.innerHTML = '欢迎来到' + SCHOOL_CONFIG.schoolName + '<br>请输入新生群内的通行码';
   if (SCHOOL_CONFIG.password) {
     document.getElementById('passGate').classList.remove('hidden');
   }
