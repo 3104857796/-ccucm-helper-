@@ -141,7 +141,7 @@ const SCHOOLS = {
     schoolShortName: '吉林农大',
     botName: '小禾',
     botGreeting: '嗨～欢迎来到吉林农业大学！🌾 我是你的校园小助手"小禾"，关于报到、宿舍、食堂、军训、选课、社团……想问什么尽管打字问我，我看到秒回你哦～',
-    password: '', // 暂不设密码，等群码到位再加
+    password: 'jlny2026', // 需要验证码才能使用
     qrcodeImage: '', // 群码后续补充
     campusImages: ['img/jlau/01.jpg', 'img/jlau/02.jpg', 'img/jlau/03.jpg'],
     theme: {
