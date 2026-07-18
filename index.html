@@ -534,6 +534,15 @@ function renderGreeting() {
   document.title = SCHOOL_CONFIG.schoolShortName + ' - 新生助手';
   document.getElementById('greetingText').innerHTML = SCHOOL_CONFIG.botGreeting.replace(/\n/g, '<br>');
 
+  // 地标标签（有图显示图，无图显示文字）
+  var theme = SCHOOL_CONFIG.theme || {};
+  var tags = document.querySelectorAll('.landmark-tag');
+  if (theme.landmarkLabels && tags.length >= theme.landmarkLabels.length) {
+    for (var i = 0; i < Math.min(tags.length, theme.landmarkLabels.length); i++) {
+      tags[i].textContent = theme.landmarkLabels[i];
+    }
+  }
+
   const questions = [
     '报到需要带什么材料？',
     '宿舍几人间有空调吗？',
@@ -733,25 +742,58 @@ document.getElementById('inputBox').addEventListener('input', function() {
 
 // === 校园主题应用 ===
 function applySchoolTheme() {
-  var cfg = SCHOOL_CONFIG;
-  // 校园背景图
-  if (cfg.bgImage) {
-    document.body.style.background =
-      'linear-gradient(180deg, rgba(212,232,208,0.9) 0%, rgba(232,240,228,0.9) 30%, rgba(237,242,237,0.9) 60%, rgba(240,242,240,0.9) 100%), url(' + cfg.bgImage + ') center/cover no-repeat';
+  var t = SCHOOL_CONFIG.theme || {};
+  // 背景（bodyBg做底，有bgImage就叠在上面做水印）
+  if (t.bgImage) {
+    var overlay = 'linear-gradient(180deg, rgba(212,232,208,0.9) 0%, rgba(232,240,228,0.9) 30%, rgba(237,242,237,0.9) 60%, rgba(240,242,240,0.9) 100%)';
+    document.body.style.background = overlay + ', url(' + t.bgImage + ') center/cover no-repeat';
     document.body.style.backgroundAttachment = 'fixed';
+  } else if (t.bodyBg) {
+    document.body.style.background = t.bodyBg;
   }
-  // 欢迎卡片地标：有实拍图就用图，没有就显示文字标签
+  // 头部
+  var hdr = document.querySelector('.header');
+  if (t.headerGradient) hdr.style.background = t.headerGradient;
+  var hIcon = document.querySelector('.header .icon-circle');
+  if (t.headerIcon && hIcon) hIcon.textContent = t.headerIcon;
+  // 欢迎卡片
+  var wTop = document.querySelector('.welcome-top');
+  if (t.headerGradient) wTop.style.background = t.headerGradient;
+  var wIcon = document.querySelector('.welcome-top .w-icon');
+  if (t.welcomeIcon && wIcon) wIcon.textContent = t.welcomeIcon;
+  var wTitle = document.querySelector('.welcome-top .w-title');
+  if (t.welcomeTitle && wTitle) wTitle.textContent = t.welcomeTitle;
+  var wSub = document.querySelector('.welcome-top .w-sub');
+  if (t.welcomeSubtitle && wSub) wSub.textContent = t.welcomeSubtitle;
+  // 用户气泡颜色
+  if (t.userBubble) {
+    var ubs = document.querySelectorAll('.bubble.user');
+    document.documentElement.style.setProperty('--user-bubble', t.userBubble);
+  }
+  // 发送按钮
+  if (t.btnBg) {
+    document.querySelector('.input-bar button').style.background = t.btnBg;
+  }
+  // 地标标签：有实拍图用图，否则用文字
   var tags = document.querySelectorAll('.landmark-tag');
-  var showText = !cfg.campusImages || cfg.campusImages.length < 3;
-  if (!showText && tags.length >= 3) {
-    var imgs = cfg.campusImages.slice(0,3);
-    tags[0].innerHTML = '<img src="'+imgs[0]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="校园风景">';
-    tags[0].style.cssText = 'padding:3px;width:32%;';
-    tags[1].innerHTML = '<img src="'+imgs[1]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="校园风景">';
-    tags[1].style.cssText = 'padding:3px;width:32%;';
-    tags[2].innerHTML = '<img src="'+imgs[2]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="校园风景">';
-    tags[2].style.cssText = 'padding:3px;width:32%;';
+  var imgs = SCHOOL_CONFIG.campusImages;
+  if (imgs && imgs.length >= 3 && tags.length >= 3) {
+    for (var j=0; j<3; j++) {
+      tags[j].innerHTML = '<img src="'+imgs[j]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="">';
+      tags[j].style.cssText = 'padding:3px;width:32%;';
+    }
+  } else if (t.landmarkLabels && t.landmarkLabels.length >= 3 && tags.length >= 3) {
+    for (var k=0; k<3; k++) {
+      tags[k].textContent = t.landmarkLabels[k];
+    }
   }
+  // 密码门
+  var pTitle = document.querySelector('.password-gate h2');
+  if (t.passwordTitle && pTitle) pTitle.textContent = t.passwordTitle;
+  var pIcon = document.querySelector('.password-gate .gate-icon');
+  if (t.passwordIcon && pIcon) pIcon.textContent = t.passwordIcon;
+  var pBtn = document.querySelector('.password-gate button');
+  if (t.passwordBtn && pBtn) pBtn.textContent = t.passwordBtn;
 }
 
 // === 初始化 ===
@@ -782,12 +824,13 @@ setInterval(() => {
 
 if (!SCHOOL_CONFIG.password) initChat();
 
-// === 主题色 ===
+// === 主题色注入（从theme提取主色用于快捷按钮等） ===
 (function() {
-  const c = SCHOOL_CONFIG.themeColor;
-  const d = (h, a) => { const n = parseInt(h.replace('#',''),16); const r = Math.max(0,(n>>16)-a); const g = Math.max(0,((n>>8)&0xFF)-a); const b = Math.max(0,(n&0xFF)-a); return '#'+(0x1000000+r*0x10000+g*0x100+b).toString(16).slice(1); };
-  document.documentElement.style.setProperty('--green', c);
-  document.documentElement.style.setProperty('--user-bubble', c);
+  const t = SCHOOL_CONFIG.theme || {};
+  // 从 headerGradient 提取主色，默认绿色
+  const m = (t.headerGradient || '').match(/#([0-9A-Fa-f]{6})/);
+  const c = m ? m[1] : '2E7D32'; // fallback
+  document.documentElement.style.setProperty('--green', '#' + c);
 })();
 </script>
 </body>
