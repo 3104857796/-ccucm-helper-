@@ -430,6 +430,20 @@ body::after {
 }
 .hidden { display:none !important; }
 </style>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  window.addEventListener('DOMContentLoaded', function() {
+    var id = (typeof SCHOOL_CONFIG !== 'undefined') ? SCHOOL_CONFIG.baiduTongjiId : '';
+    if (id) {
+      var hm = document.createElement('script');
+      hm.src = 'https://hm.baidu.com/hm.js?' + id;
+      document.head.appendChild(hm);
+    }
+  });
+})();
+</script>
 </head>
 <body>
 
@@ -577,6 +591,9 @@ async function send() {
   inputBox.style.height = 'auto';
   messages.push({ role: 'user', content: text });
   addBubble(text, 'user');
+
+  // 百度统计 - 记录提问
+  if (window._hmt) _hmt.push(['_trackEvent', '问答', '提问', text.slice(0, 50)]);
 
   isLoading = true;
   document.getElementById('sendBtn').disabled = true;

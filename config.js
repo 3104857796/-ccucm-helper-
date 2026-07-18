@@ -46,6 +46,10 @@ const SCHOOL_CONFIG = {
   // 去 platform.deepseek.com → 费用管理 → 设置每月额度上限（建议50元），防滥用
   deepseekApiKey: 'sk-98b30a845b9242969b69aaf517273af6',
 
+  // ---- 访问统计 ----
+  // 去 tongji.baidu.com 注册，添加网站，获取统计ID（hm.js?后面的那串）
+  baiduTongjiId: '',
+
   // ---- 高级设置（一般不用改）----
   deepseekModel: 'deepseek-chat',
   maxHistory: 20, // 保留最近20轮对话记忆
