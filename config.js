@@ -164,6 +164,7 @@ const SCHOOLS = {
     qrcodeImage: '', // 群码后续补充
     campusImages: ['img/jlau/01.jpg', 'img/jlau/02.jpg', 'img/jlau/03.jpg'],
     dormImage: 'img/jlau/dorm.jpg',
+    dormImages: ['img/jlau/dorm01.jpg', 'img/jlau/dorm02.jpg', 'img/jlau/dorm03.jpg', 'img/jlau/dorm04.jpg'],
     qrCodes: [],
     theme: {
       headerGradient: 'linear-gradient(180deg, #2d545a 0%, #3b6971 40%, #4d7f88 100%)',
@@ -220,6 +221,11 @@ const SCHOOLS = {
 - 学费因专业不同各异，具体以录取通知书为准。
 
 【宿舍】
+- 宿舍实拍照片见下方（横向滑动查看）：
+[IMG:img/jlau/dorm01.jpg]
+[IMG:img/jlau/dorm02.jpg]
+[IMG:img/jlau/dorm03.jpg]
+[IMG:img/jlau/dorm04.jpg]
 - 本科新生多为6人间（780元/年）或8人间（560元/年），上下铺，每人配铁皮柜子，宿舍配一张桌子、三把椅子、一个晾衣架。
 - 好消息！学校2026年暑假已完成全校学生寝室电力增容和线路改造，**空调已安装**。建议仍自备小风扇备用。
 - 无独立卫浴，每层楼有两个公共卫生间、一台热水机、两个公用吹风机，一楼有洗衣房。

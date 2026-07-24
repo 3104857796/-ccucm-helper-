@@ -798,12 +798,26 @@ function renderGreeting() {
   // 不再渲染欢迎卡片
 }
 
+// 渲染图片：单张纵向，多张横向滑动
+function renderImages(text) {
+  var imgs = text.match(/\[IMG:([^\]]+)\]/g);
+  if (!imgs) return text;
+  text = text.replace(/\[IMG:[^\]]+\]\n?/g, '');
+  if (imgs.length === 1) {
+    var src = imgs[0].replace(/\[IMG:([^\]]+)\]/, '$1');
+    return text + '<img src="' + src + '" style="max-width:100%;border-radius:10px;margin:8px 0;display:block;" onerror="this.style.display=\'none\'">';
+  }
+  var html = imgs.map(function(m) {
+    var s = m.replace(/\[IMG:([^\]]+)\]/, '$1');
+    return '<div style="flex:0 0 auto;width:85%;scroll-snap-align:start;"><img src="' + s + '" style="width:100%;height:220px;object-fit:cover;border-radius:12px;display:block;" onerror="this.style.display=\'none\'"></div>';
+  }).join('');
+  return text + '<div style="display:flex;gap:10px;overflow-x:auto;padding:10px 0;margin:6px 0;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none;"><div style="display:flex;gap:10px;">' + html + '</div></div>';
+}
+
 function addBubble(text, role) {
   const div = document.createElement('div');
   div.className = 'bubble ' + role;
-  // 支持 [IMG:路径] 图片标记
-  var html = text.replace(/\[IMG:([^\]]+)\]/g, '<img src="$1" style="max-width:100%;border-radius:10px;margin:6px 0;display:block;">');
-  div.innerHTML = html.replace(/\n/g, '<br>');
+  div.innerHTML = renderImages(text).replace(/\n/g, '<br>');
   chatBox.appendChild(div);
   scrollDown();
   return div;
@@ -856,7 +870,8 @@ async function send() {
     if (/宿舍|寝室|住宿|上床下桌/.test(text) && SCHOOL_CONFIG.dormImage) {
       displayText += '\n\n[IMG:' + SCHOOL_CONFIG.dormImage + ']';
     }
-    result.bubble.innerHTML = displayText.replace(/\[IMG:([^\]]+)\]/g, '<img src="$1" style="max-width:100%;border-radius:10px;margin:6px 0;display:block;">').replace(/\n/g, '<br>');
+    displayText = renderImages(displayText).replace(/\n/g, '<br>');
+    result.bubble.innerHTML = displayText;
     messages.push({ role: 'assistant', content: result.fullText });
     // 回答完后显示轮转话题
     renderRotatingTopics();
@@ -938,7 +953,7 @@ ${KNOWLEDGE_BASE}`;
       try {
         const data = JSON.parse(dataStr);
         const delta = data.choices?.[0]?.delta?.content;
-        if (delta) { fullText += delta; bubble.innerHTML = fullText.replace(/\[IMG:([^\]]+)\]/g, '<img src=\"$1\" style=\"max-width:100%;border-radius:10px;margin:6px 0;display:block;\">').replace(/\n/g, '<br>'); scrollDown(); }
+        if (delta) { fullText += delta; bubble.innerHTML = renderImages(fullText).replace(/\n/g, '<br>'); scrollDown(); }
       } catch(e) {}
     }
   }
