@@ -355,9 +355,11 @@ const SCHOOLS = {
 // 全局设置
 // ========================================
 const GLOBAL_CONFIG = {
-  // API 代理地址（Cloudflare Worker）
+  // API 代理地址（Cloudflare Worker，备用）
   apiEndpoint: 'https://campus-bot-proxy.watery-cosmonaut.workers.dev',
 
+  // DeepSeek API（直接调用）
+  deepseekApiKey: 'sk-98b30a845b9242969b69aaf517273af6',
   deepseekModel: 'deepseek-chat',
   maxHistory: 20,
 
@@ -380,6 +382,7 @@ function getCurrentSchool() {
   return {
     ...school,
     apiEndpoint: GLOBAL_CONFIG.apiEndpoint,
+    deepseekApiKey: GLOBAL_CONFIG.deepseekApiKey,
     deepseekModel: GLOBAL_CONFIG.deepseekModel,
     maxHistory: GLOBAL_CONFIG.maxHistory,
     baiduTongjiId: GLOBAL_CONFIG.baiduTongjiId,
