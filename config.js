@@ -203,7 +203,7 @@ const SCHOOLS = {
     actionButtons: [
       { label: '新生地图', icon: '🗺️', action: 'map' },
       { label: '新生群聊', icon: '💬', action: 'group' },
-      { label: '业务按钮', icon: '📋', action: 'service' },
+      { label: '新生服务', icon: '📋', action: 'service' },
     ],
     guideTips: {
       default: '有需要随时找我，加入新生群获取更多及时信息哦～',
