@@ -165,7 +165,7 @@ const SCHOOLS = {
     campusImages: ['img/jlau/01.jpg', 'img/jlau/02.jpg', 'img/jlau/03.jpg'],
     dormImage: 'img/jlau/dorm.jpg',
     dormImages: ['img/jlau/dorm01.jpg', 'img/jlau/dorm02.jpg', 'img/jlau/dorm03.jpg', 'img/jlau/dorm04.jpg'],
-    campusVideo: 'img/jlau/campus.mp4',
+    campusVideo: 'BV1bxgq6jEbx',
     qrCodes: [],
     theme: {
       headerGradient: 'linear-gradient(180deg, #2d545a 0%, #3b6971 40%, #4d7f88 100%)',
