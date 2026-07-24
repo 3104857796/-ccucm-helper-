@@ -157,7 +157,7 @@ const SCHOOLS = {
   // ========================
   jlau: {
     schoolName: '吉林农业大学',
-    schoolShortName: '吉林农业大学',
+    schoolShortName: '吉农万事通',
     botName: '万事通',
     botGreeting: '',
     password: 'jlny2026', // 需要验证码才能使用
@@ -167,7 +167,7 @@ const SCHOOLS = {
     qrCodes: [],
     theme: {
       headerGradient: 'linear-gradient(180deg, #2d545a 0%, #3b6971 40%, #4d7f88 100%)',
-      headerIcon: '<img src="img/jlau/emblem.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" alt="校徽">',
+      headerIcon: '<img src="img/jlau/wanshitong.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" alt="万事通">',
       emblemImage: 'img/jlau/emblem.jpg',
       wanshitongImage: 'img/jlau/wanshitong.jpg',
       welcomeTitle: '欢迎来到吉林农业大学',
