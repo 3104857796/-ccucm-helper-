@@ -814,10 +814,18 @@ function renderImages(text) {
   return text + '<div style="display:flex;gap:10px;overflow-x:auto;padding:10px 0;margin:6px 0;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none;"><div style="display:flex;gap:10px;">' + html + '</div></div>';
 }
 
+// 渲染视频：[VIDEO:路径] → video播放器
+function renderVideo(text) {
+  var m = text.match(/\[VIDEO:([^\]]+)\]/);
+  if (!m) return text;
+  text = text.replace(/\[VIDEO:[^\]]+\]\n?/g, '');
+  return text + '<video controls preload="metadata" style="width:100%;max-height:280px;border-radius:12px;margin:8px 0;display:block;background:#000;"><source src="' + m[1] + '" type="video/mp4"></video>';
+}
+
 function addBubble(text, role) {
   const div = document.createElement('div');
   div.className = 'bubble ' + role;
-  div.innerHTML = renderImages(text).replace(/\n/g, '<br>');
+  div.innerHTML = renderVideo(renderImages(text)).replace(/\n/g, '<br>');
   chatBox.appendChild(div);
   scrollDown();
   return div;
@@ -873,7 +881,11 @@ async function send() {
         displayText += '\n[IMG:' + dormImgs[di] + ']';
       }
     }
-    displayText = renderImages(displayText).replace(/\n/g, '<br>');
+    // 如果问校园环境且学校有视频，自动追加
+    if (/校园环境|校园怎么样|学校环境|校园风景|校园好看|学校好看|校园美|逛逛校园/.test(text) && SCHOOL_CONFIG.campusVideo) {
+      displayText += '\n[VIDEO:' + SCHOOL_CONFIG.campusVideo + ']';
+    }
+    displayText = renderVideo(renderImages(displayText)).replace(/\n/g, '<br>');
     result.bubble.innerHTML = displayText;
     messages.push({ role: 'assistant', content: result.fullText });
     // 回答完后显示轮转话题
@@ -956,7 +968,7 @@ ${KNOWLEDGE_BASE}`;
       try {
         const data = JSON.parse(dataStr);
         const delta = data.choices?.[0]?.delta?.content;
-        if (delta) { fullText += delta; bubble.innerHTML = renderImages(fullText).replace(/\n/g, '<br>'); scrollDown(); }
+        if (delta) { fullText += delta; bubble.innerHTML = renderVideo(renderImages(fullText)).replace(/\n/g, '<br>'); scrollDown(); }
       } catch(e) {}
     }
   }
