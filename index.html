@@ -8,36 +8,36 @@
 <link rel="preload" as="image" href="qrcode.jpg">
 <style>
 :root {
-  --green: #2E7D32;
-  --green-light: #4CAF50;
-  --green-pale: #E8F5E9;
+  --green: #3b6971;
+  --green-light: #4d7f88;
+  --green-pale: #e8f0f1;
   --gold: #A68B3C;
   --gold-light: #F5F0E0;
   --text: #333;
   --sub: #888;
-  --user-bubble: #2E7D32;
+  --user-bubble: #3b6971;
   --bot-bubble: #fff;
-  --lake: #1a6b5a;
-  --sky: #e8f0f8;
+  --lake: #2d545a;
+  --sky: #e8f0f1;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: linear-gradient(180deg, #d4e8d0 0%, #e8f0e4 30%, #edf2ed 60%, #f0f2f0 100%);
+  background: linear-gradient(180deg, #e8f0f1 0%, #eef3f4 30%, #f2f5f5 60%, #f5f7f7 100%);
   background-attachment: fixed;
   height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
-/* 水面光晕装饰 */
+/* 光晕装饰 */
 body::before {
   content: '';
   position: fixed;
   top: -120px; left: -80px;
   width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(46,125,50,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(59,105,113,0.08) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -47,7 +47,7 @@ body::after {
   position: fixed;
   bottom: -60px; right: -60px;
   width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(166,139,60,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(59,105,113,0.06) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -55,13 +55,13 @@ body::after {
 
 /* === 头部 === */
 .header {
-  background: linear-gradient(180deg, #1B5E20 0%, #2E7D32 40%, #38853A 100%);
+  background: linear-gradient(180deg, #2d545a 0%, #3b6971 40%, #4d7f88 100%);
   color: white;
   padding: 18px 16px 14px;
   text-align: center;
   position: relative;
   z-index: 10;
-  box-shadow: 0 4px 16px rgba(27,94,32,0.2);
+  box-shadow: 0 4px 16px rgba(45,84,90,0.2);
   border-bottom: 3px solid rgba(255,255,255,0.1);
 }
 .header::after {
@@ -129,7 +129,7 @@ body::after {
   animation: fadeUp 0.5s ease;
 }
 .welcome-top {
-  background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 50%, #66BB6A 100%);
+  background: linear-gradient(135deg, #3b6971 0%, #4d7f88 50%, #5f939c 100%);
   padding: 20px 18px;
   text-align: center;
   color: white;
@@ -185,11 +185,11 @@ body::after {
 }
 .welcome-body .landmark-tag {
   font-size: 11px;
-  background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
-  color: #2E7D32;
+  background: linear-gradient(135deg, #e8f0f1, #eef3f4);
+  color: #3b6971;
   padding: 5px 10px;
   border-radius: 14px;
-  border: 1px solid rgba(46,125,50,0.1);
+  border: 1px solid rgba(59,105,113,0.1);
 }
 
 /* === 气泡 === */
@@ -207,10 +207,10 @@ body::after {
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 .bubble.user {
   align-self: flex-end;
-  background: linear-gradient(135deg, #2E7D32, #43A047);
+  background: var(--user-bubble, linear-gradient(135deg, #3b6971, #4d7f88));
   color: #fff;
   border-bottom-right-radius: 6px;
-  box-shadow: 0 2px 8px rgba(46,125,50,0.25);
+  box-shadow: 0 2px 8px rgba(59,105,113,0.25);
 }
 .bubble.bot {
   align-self: flex-start;
@@ -246,14 +246,14 @@ body::after {
   border-radius: 20px;
   padding: 9px 15px;
   font-size: 13px;
-  color: #2E7D32;
+  color: #3b6971;
   cursor: pointer;
   transition: all 0.25s;
   white-space: nowrap;
   box-shadow: 0 1px 3px rgba(0,0,0,0.03);
   font-family: inherit;
 }
-.quick-btn:hover { background: #2E7D32; color: #fff; border-color: #2E7D32; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(46,125,50,0.2); }
+.quick-btn:hover { background: #3b6971; color: #fff; border-color: #3b6971; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(59,105,113,0.2); }
 .quick-btn:active { transform: scale(0.95); }
 
 /* === 输入区 === */
@@ -283,11 +283,11 @@ body::after {
   transition: all 0.2s;
   background: #fafafa;
 }
-.input-bar textarea:focus { border-color: #4CAF50; background: #fff; box-shadow: 0 0 0 3px rgba(76,175,80,0.1); }
+.input-bar textarea:focus { border-color: #4d7f88; background: #fff; box-shadow: 0 0 0 3px rgba(77,127,136,0.1); }
 .input-bar button {
   width: 46px; height: 46px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2E7D32, #43A047);
+  background: linear-gradient(135deg, #3b6971, #4d7f88);
   color: #fff;
   border: none;
   font-size: 18px;
@@ -297,7 +297,7 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 10px rgba(46,125,50,0.3);
+  box-shadow: 0 3px 10px rgba(59,105,113,0.3);
 }
 .input-bar button:active { transform: scale(0.9); }
 .input-bar button:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
@@ -328,7 +328,7 @@ body::after {
 /* === 密码门 === */
 .password-gate {
   position: fixed; inset: 0;
-  background: linear-gradient(180deg, #e8f0e4 0%, #f5f7f4 50%, #fafaf9 100%);
+  background: linear-gradient(180deg, #e8f0f1 0%, #f2f5f5 50%, #f7f8f8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -341,7 +341,7 @@ body::after {
   position: absolute;
   top: 15%; left: 20%;
   width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(46,125,50,0.06) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(59,105,113,0.06) 0%, transparent 60%);
   border-radius: 50%;
 }
 .password-gate .gate-card {
@@ -356,7 +356,7 @@ body::after {
   z-index: 1;
 }
 .password-gate .gate-icon { font-size: 48px; margin-bottom: 12px; }
-.password-gate h2 { color: #2E7D32; font-size: 20px; margin-bottom: 6px; }
+.password-gate h2 { color: #3b6971; font-size: 20px; margin-bottom: 6px; }
 .password-gate p { color: #888; font-size: 13px; margin-bottom: 20px; line-height: 1.6; }
 .password-gate input {
   border: 2px solid #e8e8e8;
@@ -370,9 +370,9 @@ body::after {
   transition: border 0.2s;
   font-family: inherit;
 }
-.password-gate input:focus { border-color: #4CAF50; box-shadow: 0 0 0 4px rgba(76,175,80,0.08); }
+.password-gate input:focus { border-color: #4d7f88; box-shadow: 0 0 0 4px rgba(77,127,136,0.08); }
 .password-gate button {
-  background: linear-gradient(135deg, #2E7D32, #43A047);
+  background: linear-gradient(135deg, #3b6971, #4d7f88);
   color: white;
   border: none;
   border-radius: 14px;
@@ -472,6 +472,108 @@ body::after {
   cursor: pointer; background: transparent; font-family: inherit;
 }
 .qr-modal .qr-modal-close:active { background: rgba(255,255,255,0.15); }
+
+/* === 功能按钮栏 === */
+.action-bar {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+.action-bar.hidden { display: none; }
+.action-btn {
+  flex: 1;
+  max-width: 110px;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 10px 8px;
+  font-size: 13px;
+  color: #3b6971;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.action-btn:hover { border-color: #3b6971; background: #f5f9fa; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(59,105,113,0.1); }
+.action-btn:active { transform: scale(0.95); }
+.action-btn .action-icon { font-size: 22px; }
+
+/* === 轮转话题区 === */
+.rotate-section {
+  align-self: center;
+  width: 100%;
+  max-width: 380px;
+  margin: 6px 0;
+}
+.rotate-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.rotate-label {
+  font-size: 12px;
+  color: #999;
+  letter-spacing: 1px;
+}
+.rotate-refresh {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 3px 10px;
+  font-size: 11px;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.rotate-refresh:hover { border-color: #3b6971; color: #3b6971; background: #f5f9fa; }
+.rotate-refresh:active { transform: scale(0.95); }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.rotate-refresh.spinning .refresh-icon { animation: spin 0.5s ease; }
+.rotate-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.rotate-btn {
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 9px 15px;
+  font-size: 13px;
+  color: #3b6971;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  font-family: inherit;
+}
+.rotate-btn:hover { background: #3b6971; color: #fff; border-color: #3b6971; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(59,105,113,0.2); }
+.rotate-btn:active { transform: scale(0.95); }
+
+/* === header icon 图片适配 === */
+.header .icon-circle img {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
 </style>
 <!-- 百度统计 -->
 <script>
@@ -513,28 +615,32 @@ var _hmt = _hmt || [];
 
 <!-- 聊天区 -->
 <div class="chat" id="chatBox">
-  <!-- 欢迎卡片 -->
-  <div class="welcome-card" id="welcomeCard">
-    <div class="welcome-top">
-      <div class="w-icon">🏛️</div>
-      <div class="w-title">欢迎来到长中医</div>
-      <div class="w-sub">青龙湾畔 · 杏林春暖</div>
+  <!-- 轮转话题区（初始隐藏，进入后显示） -->
+  <div class="rotate-section hidden" id="rotateSection">
+    <div class="rotate-header">
+      <span class="rotate-label">✨ 大家都在问</span>
+      <button class="rotate-refresh" id="rotateRefreshBtn" onclick="refreshRotatingTopics()">
+        <span class="refresh-icon">🔄</span> 换一换
+      </button>
     </div>
-    <div class="welcome-body">
-      <div class="greeting-text" id="greetingText"></div>
-      <div class="landmark-tags">
-        <span class="landmark-tag">🏫 四象城图书馆</span>
-        <span class="landmark-tag">🌊 青龙湾</span>
-        <span class="landmark-tag">🌿 七星百草园</span>
-        <span class="landmark-tag">🍜 杏林餐厅</span>
-      </div>
-    </div>
+    <div class="rotate-btns" id="rotateBtns"></div>
   </div>
-  <!-- 快捷问题 -->
-  <div class="quick-section" id="quickSection">
-    <div class="quick-label">✨ 大家都在问</div>
-    <div class="quick-btns" id="quickBtns"></div>
-  </div>
+</div>
+
+<!-- 功能按钮栏 -->
+<div class="action-bar hidden" id="actionBar">
+  <button class="action-btn" onclick="handleAction('map')">
+    <span class="action-icon">🗺️</span>
+    <span>新生地图</span>
+  </button>
+  <button class="action-btn" onclick="handleAction('group')">
+    <span class="action-icon">💬</span>
+    <span>新生群聊</span>
+  </button>
+  <button class="action-btn" onclick="handleAction('service')">
+    <span class="action-icon">📋</span>
+    <span>业务按钮</span>
+  </button>
 </div>
 
 <!-- 二维码横幅 -->
@@ -558,9 +664,18 @@ var _hmt = _hmt || [];
   // 头部
   document.getElementById('schoolTitle').textContent = SCHOOL_CONFIG.schoolShortName;
   document.getElementById('botTitle').textContent = SCHOOL_CONFIG.botName;
-  document.title = SCHOOL_CONFIG.schoolShortName + ' - 新生助手';
+  document.title = SCHOOL_CONFIG.schoolShortName + ' - 万事通';
   var hIcon = document.querySelector('.header .icon-circle');
-  if (t.headerIcon && hIcon) hIcon.textContent = t.headerIcon;
+  if (t.headerIcon && hIcon) {
+    // 支持 img 标签或纯文字
+    if (t.headerIcon.indexOf('<img') === 0) {
+      hIcon.innerHTML = t.headerIcon;
+      hIcon.style.background = 'transparent';
+      hIcon.style.border = 'none';
+    } else {
+      hIcon.textContent = t.headerIcon;
+    }
+  }
   var hdr = document.querySelector('.header');
   if (t.headerGradient) hdr.style.background = t.headerGradient;
   // 密码门
@@ -569,42 +684,28 @@ var _hmt = _hmt || [];
   var pBtn = document.querySelector('.password-gate button');
   var pDesc = document.querySelector('.password-gate p');
   if (t.passwordTitle && pTitle) pTitle.textContent = t.passwordTitle;
-  if (t.passwordIcon && pIcon) pIcon.textContent = t.passwordIcon;
+  if (t.passwordIcon && pIcon) {
+    if (t.passwordIcon.indexOf('<img') === 0) {
+      pIcon.innerHTML = t.passwordIcon;
+    } else {
+      pIcon.textContent = t.passwordIcon;
+    }
+  }
   if (t.passwordBtn && pBtn) pBtn.textContent = t.passwordBtn;
   if (pDesc) pDesc.innerHTML = '欢迎来到' + SCHOOL_CONFIG.schoolName + '<br>请输入新生群内的通行码';
-  // 欢迎卡片
-  var wIcon = document.querySelector('.welcome-top .w-icon');
-  var wTitle = document.querySelector('.welcome-top .w-title');
-  var wSub = document.querySelector('.welcome-top .w-sub');
-  if (t.welcomeIcon && wIcon) wIcon.textContent = t.welcomeIcon;
-  if (t.welcomeTitle && wTitle) wTitle.textContent = t.welcomeTitle;
-  if (t.welcomeSubtitle && wSub) wSub.textContent = t.welcomeSubtitle;
-  if (t.headerGradient) {
-    var wTop = document.querySelector('.welcome-top');
-    if (wTop) wTop.style.background = t.headerGradient;
-  }
-  // 地标标签
-  var tags = document.querySelectorAll('.landmark-tag');
-  var imgs = SCHOOL_CONFIG.campusImages;
-  if (imgs && imgs.length >= 3 && tags.length >= 3) {
-    for (var j=0; j<3; j++) {
-      tags[j].innerHTML = '<img src="'+imgs[j]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="">';
-      tags[j].style.cssText = 'padding:3px;width:32%;';
-    }
-  } else if (t.landmarkLabels && tags.length >= t.landmarkLabels.length) {
-    for (var k=0; k<Math.min(tags.length, t.landmarkLabels.length); k++) {
-      tags[k].textContent = t.landmarkLabels[k];
-    }
-  }
   // 背景图
   if (t.bgImage) {
-    var overlay = 'linear-gradient(180deg, rgba(212,232,208,0.9) 0%, rgba(232,240,228,0.9) 30%, rgba(237,242,237,0.9) 60%, rgba(240,242,240,0.9) 100%)';
+    var overlay = 'linear-gradient(180deg, rgba(232,240,241,0.9) 0%, rgba(238,243,244,0.9) 30%, rgba(242,245,245,0.9) 60%, rgba(245,247,247,0.9) 100%)';
     document.body.style.background = overlay + ', url(' + t.bgImage + ') center/cover no-repeat';
     document.body.style.backgroundAttachment = 'fixed';
   }
   // 密码
   if (SCHOOL_CONFIG.password) {
     document.getElementById('passGate').classList.remove('hidden');
+  }
+  // 功能按钮栏：有 actionButtons 配置才显示
+  if (SCHOOL_CONFIG.actionButtons && SCHOOL_CONFIG.actionButtons.length > 0) {
+    document.getElementById('actionBar').classList.remove('hidden');
   }
 })();
 
@@ -624,35 +725,77 @@ let messages = [];
 let isLoading = false;
 const chatBox = document.getElementById('chatBox');
 
-// === 渲染欢迎语 ===
+// === 轮转话题 ===
+let rotatingIndex = 0;
+const ROTATE_PER_PAGE = 6; // 每页显示数量
+
+function getRotatingTopics() {
+  if (SCHOOL_CONFIG.rotatingTopics && SCHOOL_CONFIG.rotatingTopics.length) {
+    return SCHOOL_CONFIG.rotatingTopics;
+  }
+  // 默认话题（兼容旧学校配置）
+  return [
+    { label: '报到材料', question: '报到需要带什么材料？' },
+    { label: '宿舍条件', question: '宿舍几人间有空调吗？' },
+    { label: '食堂美食', question: '食堂哪个好吃？' },
+    { label: '军训准备', question: '军训要准备什么？' },
+    { label: '转专业', question: '怎么转专业？' },
+    { label: '快递地址', question: '快递地址怎么填？' },
+    { label: '奖学金', question: '奖学金怎么拿？' },
+    { label: '怎么到学校', question: '怎么到学校？' },
+    { label: '校园卡', question: '校园卡怎么办？有什么用？' },
+    { label: '社团活动', question: '学校有什么社团？怎么加入？' },
+    { label: '澡堂', question: '澡堂在哪里？怎么收费？' },
+    { label: '防骗提醒', question: '开学有什么需要注意的骗局？' },
+  ];
+}
+
+function renderRotatingTopics() {
+  var topics = getRotatingTopics();
+  if (!topics.length) { document.getElementById('rotateSection').classList.add('hidden'); return; }
+  document.getElementById('rotateSection').classList.remove('hidden');
+  var start = rotatingIndex % topics.length;
+  var batch = [];
+  for (var i = 0; i < ROTATE_PER_PAGE; i++) {
+    batch.push(topics[(start + i) % topics.length]);
+  }
+  document.getElementById('rotateBtns').innerHTML = batch.map(function(t) {
+    return '<button class="rotate-btn" onclick="sendRotatingTopic(\'' + t.question.replace(/'/g, "\\'") + '\')">' + t.label + '</button>';
+  }).join('');
+}
+
+function refreshRotatingTopics() {
+  var topics = getRotatingTopics();
+  if (!topics.length) return;
+  rotatingIndex = (rotatingIndex + ROTATE_PER_PAGE) % topics.length;
+  var btn = document.getElementById('rotateRefreshBtn');
+  btn.classList.add('spinning');
+  setTimeout(function() { btn.classList.remove('spinning'); }, 500);
+  renderRotatingTopics();
+}
+
+function sendRotatingTopic(q) {
+  document.getElementById('inputBox').value = q;
+  send();
+}
+
+// === 功能按钮处理 ===
+function handleAction(action) {
+  if (action === 'map') {
+    addBubble('🗺️ <b>新生地图</b>功能即将上线，敬请期待～', 'bot');
+  } else if (action === 'group') {
+    addBubble('💬 <b>新生群聊</b>功能即将上线，敬请期待～', 'bot');
+  } else if (action === 'service') {
+    addBubble('📋 <b>业务办理</b>功能即将上线，敬请期待～', 'bot');
+  }
+}
+
+// === 渲染欢迎语（保留用于兼容旧学校配置） ===
 function renderGreeting() {
   document.getElementById('schoolTitle').textContent = SCHOOL_CONFIG.schoolShortName;
   document.getElementById('botTitle').textContent = SCHOOL_CONFIG.botName;
-  document.title = SCHOOL_CONFIG.schoolShortName + ' - 新生助手';
-  document.getElementById('greetingText').innerHTML = SCHOOL_CONFIG.botGreeting.replace(/\n/g, '<br>');
-
-  // 地标标签（有图显示图，无图显示文字）
-  var theme = SCHOOL_CONFIG.theme || {};
-  var tags = document.querySelectorAll('.landmark-tag');
-  if (theme.landmarkLabels && tags.length >= theme.landmarkLabels.length) {
-    for (var i = 0; i < Math.min(tags.length, theme.landmarkLabels.length); i++) {
-      tags[i].textContent = theme.landmarkLabels[i];
-    }
-  }
-
-  const questions = [
-    '报到需要带什么材料？',
-    '宿舍几人间有空调吗？',
-    '食堂哪个好吃？',
-    '军训要准备什么？',
-    '怎么转专业？',
-    '快递地址怎么填？',
-    '奖学金怎么拿？',
-    '怎么到学校？',
-  ];
-  document.getElementById('quickBtns').innerHTML = questions.map(q =>
-    `<button class="quick-btn" onclick="sendQuick('${q}')">${q}</button>`
-  ).join('');
+  document.title = SCHOOL_CONFIG.schoolShortName + ' - 万事通';
+  // 不再渲染欢迎卡片
 }
 
 function addBubble(text, role) {
@@ -715,12 +858,16 @@ async function send() {
     }
     result.bubble.innerHTML = displayText.replace(/\[IMG:([^\]]+)\]/g, '<img src="$1" style="max-width:100%;border-radius:10px;margin:6px 0;display:block;">').replace(/\n/g, '<br>');
     messages.push({ role: 'assistant', content: result.fullText });
+    // 回答完后显示轮转话题
+    renderRotatingTopics();
   } catch (err) {
     hideTyping();
     console.error(err);
     const fallback = localSearch(text);
     messages.push({ role: 'assistant', content: fallback });
     addBubble(fallback, 'bot');
+    // 回答完后显示轮转话题
+    renderRotatingTopics();
   }
 
   isLoading = false;
@@ -747,11 +894,10 @@ ${KNOWLEDGE_BASE}`;
     ...recent,
   ];
 
-  const res = await fetch('https://api.deepseek.com/chat/completions', {
+  const res = await fetch(config.apiEndpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + config.deepseekApiKey,
     },
     body: JSON.stringify({
       model: config.deepseekModel,
@@ -825,9 +971,9 @@ document.getElementById('inputBox').addEventListener('input', function() {
 // === 校园主题应用 ===
 function applySchoolTheme() {
   var t = SCHOOL_CONFIG.theme || {};
-  // 背景（bodyBg做底，有bgImage就叠在上面做水印）
+  // 背景
   if (t.bgImage) {
-    var overlay = 'linear-gradient(180deg, rgba(212,232,208,0.9) 0%, rgba(232,240,228,0.9) 30%, rgba(237,242,237,0.9) 60%, rgba(240,242,240,0.9) 100%)';
+    var overlay = 'linear-gradient(180deg, rgba(232,240,241,0.9) 0%, rgba(238,243,244,0.9) 30%, rgba(242,245,245,0.9) 60%, rgba(245,247,247,0.9) 100%)';
     document.body.style.background = overlay + ', url(' + t.bgImage + ') center/cover no-repeat';
     document.body.style.backgroundAttachment = 'fixed';
   } else if (t.bodyBg) {
@@ -837,43 +983,36 @@ function applySchoolTheme() {
   var hdr = document.querySelector('.header');
   if (t.headerGradient) hdr.style.background = t.headerGradient;
   var hIcon = document.querySelector('.header .icon-circle');
-  if (t.headerIcon && hIcon) hIcon.textContent = t.headerIcon;
-  // 欢迎卡片
-  var wTop = document.querySelector('.welcome-top');
-  if (t.headerGradient) wTop.style.background = t.headerGradient;
-  var wIcon = document.querySelector('.welcome-top .w-icon');
-  if (t.welcomeIcon && wIcon) wIcon.textContent = t.welcomeIcon;
-  var wTitle = document.querySelector('.welcome-top .w-title');
-  if (t.welcomeTitle && wTitle) wTitle.textContent = t.welcomeTitle;
-  var wSub = document.querySelector('.welcome-top .w-sub');
-  if (t.welcomeSubtitle && wSub) wSub.textContent = t.welcomeSubtitle;
+  if (t.headerIcon && hIcon) {
+    if (t.headerIcon.indexOf('<img') === 0) {
+      hIcon.innerHTML = t.headerIcon;
+      hIcon.style.background = 'transparent';
+      hIcon.style.border = 'none';
+    } else {
+      hIcon.textContent = t.headerIcon;
+      hIcon.style.background = '';
+      hIcon.style.border = '';
+    }
+  }
   // 用户气泡颜色
   if (t.userBubble) {
-    var ubs = document.querySelectorAll('.bubble.user');
     document.documentElement.style.setProperty('--user-bubble', t.userBubble);
   }
   // 发送按钮
   if (t.btnBg) {
     document.querySelector('.input-bar button').style.background = t.btnBg;
   }
-  // 地标标签：有实拍图用图，否则用文字
-  var tags = document.querySelectorAll('.landmark-tag');
-  var imgs = SCHOOL_CONFIG.campusImages;
-  if (imgs && imgs.length >= 3 && tags.length >= 3) {
-    for (var j=0; j<3; j++) {
-      tags[j].innerHTML = '<img src="'+imgs[j]+'" style="width:100%;height:60px;object-fit:cover;border-radius:8px;" alt="">';
-      tags[j].style.cssText = 'padding:3px;width:32%;';
-    }
-  } else if (t.landmarkLabels && t.landmarkLabels.length >= 3 && tags.length >= 3) {
-    for (var k=0; k<3; k++) {
-      tags[k].textContent = t.landmarkLabels[k];
-    }
-  }
   // 密码门
   var pTitle = document.querySelector('.password-gate h2');
   if (t.passwordTitle && pTitle) pTitle.textContent = t.passwordTitle;
   var pIcon = document.querySelector('.password-gate .gate-icon');
-  if (t.passwordIcon && pIcon) pIcon.textContent = t.passwordIcon;
+  if (t.passwordIcon && pIcon) {
+    if (t.passwordIcon.indexOf('<img') === 0) {
+      pIcon.innerHTML = t.passwordIcon;
+    } else {
+      pIcon.textContent = t.passwordIcon;
+    }
+  }
   var pBtn = document.querySelector('.password-gate button');
   if (t.passwordBtn && pBtn) pBtn.textContent = t.passwordBtn;
 }
@@ -906,6 +1045,21 @@ function initChat() {
   applySchoolTheme();
   renderGreeting();
   renderQrBanner();
+  // 如果配置了 autoIntro，自动发送自我介绍
+  if (SCHOOL_CONFIG.autoIntro) {
+    setTimeout(function() {
+      showTyping();
+      setTimeout(function() {
+        hideTyping();
+        addBubble(SCHOOL_CONFIG.autoIntro, 'bot');
+        messages.push({ role: 'assistant', content: SCHOOL_CONFIG.autoIntro });
+        // 自我介绍后显示轮转话题
+        renderRotatingTopics();
+      }, 800);
+    }, 400);
+  } else {
+    renderRotatingTopics();
+  }
   // 每次进入都是新对话，不保存历史
 }
 
@@ -916,7 +1070,7 @@ if (!SCHOOL_CONFIG.password) initChat();
   const t = SCHOOL_CONFIG.theme || {};
   // 从 headerGradient 提取主色，默认绿色
   const m = (t.headerGradient || '').match(/#([0-9A-Fa-f]{6})/);
-  const c = m ? m[1] : '2E7D32'; // fallback
+  const c = m ? m[1] : '3b6971'; // fallback
   document.documentElement.style.setProperty('--green', '#' + c);
 })();
 </script>

@@ -14,6 +14,7 @@ const SCHOOLS = {
     schoolShortName: '长中医',
     botName: '小杏',
     botGreeting: '嗨～欢迎来到长春中医药大学！🎉 我是你的校园小助手"小杏"，关于报到、宿舍、食堂、军训、选课、社团……想问什么尽管打字问我，我看到秒回你哦～',
+    autoIntro: '嗨～欢迎来到长春中医药大学！🎉 我是你的校园小助手"小杏"，关于报到、宿舍、食堂、军训、选课、社团……想问什么尽管打字问我，我看到秒回你哦～\n\n💡 点击下方热门话题可以快速提问～',
     password: 'cczyy2026',
     qrcodeImage: 'qrcode.jpg',
     campusImages: [], // 装饰图，可加多个
@@ -156,29 +157,54 @@ const SCHOOLS = {
   // ========================
   jlau: {
     schoolName: '吉林农业大学',
-    schoolShortName: '吉林农大',
-    botName: '小禾',
-    botGreeting: '嗨～欢迎来到吉林农业大学！🌾 我是你的校园小助手"小禾"，关于报到、宿舍、食堂、军训、选课、社团……想问什么尽管打字问我，我看到秒回你哦～',
+    schoolShortName: '吉林农业大学',
+    botName: '万事通',
+    botGreeting: '',
     password: 'jlny2026', // 需要验证码才能使用
     qrcodeImage: '', // 群码后续补充
     campusImages: ['img/jlau/01.jpg', 'img/jlau/02.jpg', 'img/jlau/03.jpg'],
     dormImage: 'img/jlau/dorm.jpg',
     qrCodes: [],
     theme: {
-      headerGradient: 'linear-gradient(180deg, #33691E 0%, #558B2F 40%, #7CB342 100%)',
-      headerIcon: '🌾',
-      welcomeTitle: '欢迎来到吉林农大',
-      welcomeSubtitle: '沃野千里 · 神农新篇',
-      welcomeIcon: '🌻',
+      headerGradient: 'linear-gradient(180deg, #2d545a 0%, #3b6971 40%, #4d7f88 100%)',
+      headerIcon: '<img src="img/jlau/emblem.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" alt="校徽">',
+      emblemImage: 'img/jlau/emblem.jpg',
+      wanshitongImage: 'img/jlau/wanshitong.jpg',
+      welcomeTitle: '欢迎来到吉林农业大学',
+      welcomeSubtitle: '明德崇智 · 厚朴笃行',
+      welcomeIcon: '🎓',
       landmarkLabels: ['🌾 实验田', '📚 图书馆', '🍜 鸿之磐', '🏪 迅驰广场'],
       bgImage: 'img/jlau/bg.jpg',
-      bodyBg: 'linear-gradient(180deg, #e8f5e9 0%, #f1f8e9 30%, #f5f5f0 60%, #fafaf8 100%)',
-      userBubble: 'linear-gradient(135deg, #558B2F, #7CB342)',
-      btnBg: 'linear-gradient(135deg, #558B2F, #7CB342)',
-      passwordTitle: '知农之门',
-      passwordIcon: '🌾',
-      passwordBtn: '走进田野',
+      bodyBg: 'linear-gradient(180deg, #e8f0f1 0%, #eef3f4 30%, #f2f5f5 60%, #f5f7f7 100%)',
+      userBubble: 'linear-gradient(135deg, #3b6971, #4d7f88)',
+      btnBg: 'linear-gradient(135deg, #3b6971, #4d7f88)',
+      passwordTitle: '开启新征程',
+      passwordIcon: '<img src="img/jlau/emblem.jpg" style="width:48px;height:48px;border-radius:50%;object-fit:cover;" alt="校徽">',
+      passwordBtn: '踏入吉林农业大学',
     },
+    // 进入后自动发送的自我介绍
+    autoIntro: '嗨～欢迎来到吉林农业大学！🎓 我是你的校园智能助手"万事通"✨\n\n关于报到流程、宿舍情况、食堂美食、军训安排、选课学习、社团活动、奖助学金……你想知道的校园大小事，我都能帮你解答！\n\n💡 点击下方热门话题可以快速提问哦～',
+    // 轮转话题
+    rotatingTopics: [
+      { label: '院系专业介绍', question: '介绍一下院系专业，包括核心课程、优势特色和就业方向' },
+      { label: '社团信息', question: '学校有哪些社团？百团纳新什么时候？怎么加入社团？日常有什么活动？加学分吗？' },
+      { label: '军训内容', question: '军训时间多久？军训服和军训鞋是什么样的？要准备什么必备物品？' },
+      { label: '新生报到流程', question: '新生报到的流程是什么？什么时候报到？有接站吗？要准备什么证件？' },
+      { label: '新生必备物品', question: '新生入学需要带哪些必备物品？' },
+      { label: '宿舍情况', question: '宿舍几人间？有没有空调？床铺尺寸多少？怎么选床位？' },
+      { label: '澡堂', question: '学校澡堂在哪里？怎么收费？有隔间吗？' },
+      { label: '银行卡与一卡通', question: '银行卡和一卡通怎么办理？一卡通有什么用？' },
+      { label: '快递驿站', question: '学校快递驿站在哪里？收货地址怎么填？' },
+      { label: '分班与转专业', question: '怎么分班？转专业需要什么条件？什么时候可以申请？' },
+      { label: '班委竞选建议', question: '班委竞选有什么建议？什么时候选班委？怎么准备？' },
+      { label: '防骗指南', question: '开学有哪些常见的骗局？怎么防止被骗？有什么注意事项？' },
+    ],
+    // 输入框上方功能按钮
+    actionButtons: [
+      { label: '新生地图', icon: '🗺️', action: 'map' },
+      { label: '新生群聊', icon: '💬', action: 'group' },
+      { label: '业务按钮', icon: '📋', action: 'service' },
+    ],
     guideTips: {
       default: '有需要随时找我，加入新生群获取更多及时信息哦～',
     },
@@ -290,8 +316,9 @@ const SCHOOLS = {
 // 全局设置
 // ========================================
 const GLOBAL_CONFIG = {
-  // DeepSeek API
-  deepseekApiKey: 'sk-98b30a845b9242969b69aaf517273af6',
+  // API 代理地址（Cloudflare Worker）
+  apiEndpoint: 'https://campus-bot-proxy.watery-cosmonaut.workers.dev',
+
   deepseekModel: 'deepseek-chat',
   maxHistory: 20,
 
@@ -313,7 +340,7 @@ function getCurrentSchool() {
   // 合并全局配置
   return {
     ...school,
-    deepseekApiKey: GLOBAL_CONFIG.deepseekApiKey,
+    apiEndpoint: GLOBAL_CONFIG.apiEndpoint,
     deepseekModel: GLOBAL_CONFIG.deepseekModel,
     maxHistory: GLOBAL_CONFIG.maxHistory,
     baiduTongjiId: GLOBAL_CONFIG.baiduTongjiId,
