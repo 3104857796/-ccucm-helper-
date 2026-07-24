@@ -867,8 +867,11 @@ async function send() {
     hideTyping();
     // 如果问宿舍/寝室且学校有实拍图，自动追加图片
     var displayText = result.fullText;
-    if (/宿舍|寝室|住宿|上床下桌/.test(text) && SCHOOL_CONFIG.dormImage) {
-      displayText += '\n\n[IMG:' + SCHOOL_CONFIG.dormImage + ']';
+    if (/宿舍|寝室|住宿|上床下桌/.test(text)) {
+      var dormImgs = SCHOOL_CONFIG.dormImages || (SCHOOL_CONFIG.dormImage ? [SCHOOL_CONFIG.dormImage] : []);
+      for (var di = 0; di < dormImgs.length; di++) {
+        displayText += '\n[IMG:' + dormImgs[di] + ']';
+      }
     }
     displayText = renderImages(displayText).replace(/\n/g, '<br>');
     result.bubble.innerHTML = displayText;
