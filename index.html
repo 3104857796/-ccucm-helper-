@@ -938,21 +938,20 @@ ${KNOWLEDGE_BASE}`;
     ...recent,
   ];
 
-  // Vercel代理优先，失败切Worker
-  async function tryFetch(url, headers, body) {
-    try {
-      var r = await fetch(url, { method: 'POST', headers: headers, body: body });
-      if (r.ok) return r;
-    } catch(e) { console.warn('Proxy failed:', url); }
-    return null;
-  }
-  var apiUrl = config.apiEndpoint;
-  var apiHeaders = { 'Content-Type': 'application/json' };
-  var body = JSON.stringify({ model: config.deepseekModel, messages: apiMessages, temperature: 0.7, max_tokens: config.maxTokens || 1200, stream: true });
+  // 优先直连DeepSeek(支持CORS无需代理)，失败切代理
+  var apiUrl = 'https://api.deepseek.com/chat/completions';
+  var apiHeaders = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + (config.deepseekApiKey || '') };
+  var body = JSON.stringify({ model: config.deepseekModel, messages: apiMessages, temperature: 0.7, max_tokens: config.maxTokens || 4000, stream: true });
 
-  var res = await tryFetch(apiUrl, apiHeaders, body);
-  if (!res && config.apiFallback) { res = await tryFetch(config.apiFallback, apiHeaders, body); }
-  if (!res) throw new Error('All proxies failed');
+  var res = null;
+  try { res = await fetch(apiUrl, { method: 'POST', headers: apiHeaders, body: body }); if (!res.ok) res = null; } catch(e) { console.warn('Direct fail, try proxy'); }
+  if (!res && config.apiEndpoint) {
+    try { res = await fetch(config.apiEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body }); if (!res.ok) res = null; } catch(e) {}
+  }
+  if (!res && config.apiFallback) {
+    try { res = await fetch(config.apiFallback, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body }); if (!res.ok) res = null; } catch(e) {}
+  }
+  if (!res) throw new Error('All endpoints failed');
 
   if (!res.ok) throw new Error('API Error: ' + res.status);
 
