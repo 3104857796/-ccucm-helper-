@@ -664,7 +664,7 @@ var _hmt = _hmt || [];
   // 头部
   document.getElementById('schoolTitle').textContent = SCHOOL_CONFIG.schoolShortName;
   document.getElementById('botTitle').textContent = SCHOOL_CONFIG.botName;
-  document.title = SCHOOL_CONFIG.schoolShortName + ' - 万事通';
+  document.title = SCHOOL_CONFIG.schoolShortName + ' - ' + SCHOOL_CONFIG.botName;
   var hIcon = document.querySelector('.header .icon-circle');
   if (t.headerIcon && hIcon) {
     // 支持 img 标签或纯文字
@@ -782,21 +782,23 @@ function sendRotatingTopic(q) {
 // === 功能按钮处理 ===
 function handleAction(action) {
   if (action === 'map') {
-    // 校园地图 + 全景VR（点击可放大/扫码）
-    var mapHtml = '<b>🗺️ 校园地图</b>（点击放大）<br><img src="img/jlau/map.jpg" loading="lazy" style="width:100%;border-radius:12px;margin:8px 0;cursor:pointer;" onclick="showQrModal(\'img/jlau/map.jpg\',\'校园地图\')" onerror="this.style.display=\'none\'">';
+    var mapImg = SCHOOL_CONFIG.campusMap || 'img/jlau/map.jpg';
+    var vrList = SCHOOL_CONFIG.vrCodes || ['img/jlau/vr1.png', 'img/jlau/vr2.png'];
+    var mapHtml = '<b>🗺️ 校园地图</b>（点击放大）<br><img src="' + mapImg + '" loading="lazy" style="width:100%;border-radius:12px;margin:8px 0;cursor:pointer;" onclick="showQrModal(\'' + mapImg + '\',\'校园地图\')" onerror="this.style.display=\'none\'">';
     mapHtml += '<br><b>🏛️ 全景VR</b>（点击二维码放大扫码）<br><div style="display:flex;gap:8px;margin-top:6px;">';
-    mapHtml += '<div style="flex:1;text-align:center;cursor:pointer;" onclick="showQrModal(\'img/jlau/vr1.png\',\'全景VR入口一\')"><img src="img/jlau/vr1.png" loading="lazy" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">点击放大扫码</span></div>';
-    mapHtml += '<div style="flex:1;text-align:center;cursor:pointer;" onclick="showQrModal(\'img/jlau/vr2.png\',\'全景VR入口二\')"><img src="img/jlau/vr2.png" loading="lazy" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">点击放大扫码</span></div>';
+    mapHtml += '<div style="flex:1;text-align:center;cursor:pointer;" onclick="showQrModal(\'' + vrList[0] + '\',\'全景VR入口一\')"><img src="' + vrList[0] + '" loading="lazy" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">点击放大扫码</span></div>';
+    mapHtml += '<div style="flex:1;text-align:center;cursor:pointer;" onclick="showQrModal(\'' + vrList[1] + '\',\'全景VR入口二\')"><img src="' + vrList[1] + '" loading="lazy" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">点击放大扫码</span></div>';
     mapHtml += '</div>';
     addBubble(mapHtml, 'bot');
   } else if (action === 'group') {
-    addBubble('💬 <b>新生群聊</b>功能即将上线，敬请期待～<br>学院群、兴趣群等马上就来！', 'bot');
+    addBubble('💬 <b>新生群聊</b><br><br><img src="' + (SCHOOL_CONFIG.qrcodeImage || 'qrcode.jpg') + '" style="width:200px;border-radius:12px;" onclick="showQrModal(\'' + (SCHOOL_CONFIG.qrcodeImage || 'qrcode.jpg') + '\',\'新生总群\')">', 'bot');
   } else if (action === 'service') {
+    var name = SCHOOL_CONFIG.botName === '白小白' ? '小白' : '通哥';
     var svcHtml = '<b>📋 新生一站式服务</b><br><br>';
-    svcHtml += '<b>1. 寝室被褥 🛏️</b><br>解决自带被褥麻烦、学校被褥花色单调、夏天热没有夏凉被、自带被没有军训被罩等问题。通哥提供自选花色款式，线上预定线下配送，配套学校规定统一被套，配有子母被冬暖夏凉～<br>详情关注通哥直播，下方保存小程序码，进小程序挑花色后订单截屏发给通哥即可<br><br>';
-    svcHtml += '<b>2. 二手书租赁 📚</b><br>书后价格三折，比新书更划算，比二手书便宜一半，用完即还，花更少的钱用一样的书～私信通哥填信息表预定即可，军训期间给大家配送<br><br>';
-    svcHtml += '<b>3. 电脑租赁 💻</b><br>月租几百体验不一样的机型，库存覆盖80%，找想要尝试的机型找通哥问价格即可，支持单月租月月换～<br><br>';
-    svcHtml += '<b>4. 新生游玩指南 🗺️</b><br>八月底可领取一份线上周边吃喝玩乐地图指南，并配有学生专属价格优惠，有通哥微信即有机会领取～';
+    svcHtml += '<b>1. 寝室被褥 🛏️</b><br>解决自带被褥麻烦、学校被褥花色单调等问题，' + name + '提供自选花色款式，线上预定线下配送～详情关注' + name + '直播<br><br>';
+    svcHtml += '<b>2. 二手书租赁 📚</b><br>书后价格三折，比新书更划算，用完即还～私信' + name + '填信息表预定即可，军训期间给大家配送<br><br>';
+    svcHtml += '<b>3. 电脑租赁 💻</b><br>月租几百体验不一样的机型，找' + name + '问价格即可，支持单月租月月换～<br><br>';
+    svcHtml += '<b>4. 新生游玩指南 🗺️</b><br>八月底可领取一份线上周边吃喝玩乐地图指南，有' + name + '微信即有机会领取～';
     addBubble(svcHtml, 'bot');
   }
 }
@@ -921,13 +923,14 @@ async function send() {
 async function callDeepSeek(msgs, config) {
   const recent = msgs.slice(-config.maxHistory * 2);
 
-  const systemPrompt = `你是${config.schoolName}的校园新生助手"${config.botName}"，一个热情贴心的学长形象，自称"通哥"。你的任务是用口语化的方式解答新生关于校园的问题。
+  var nickname = config.botName === '白小白' ? '小白' : '通哥';
+  const systemPrompt = `你是${config.schoolName}的校园新生助手"${config.botName}"，一个热情贴心的学长形象，自称"${nickname}"。你的任务是用口语化的方式解答新生关于校园的问题。
 
 【核心规则】
 1. 优先从下方知识库查找准确信息，引用知识库内容回答，不要编造
 2. 知识库里有的内容直接引用，用1、2、3点分条列出
 3. 只在遇到完全不了解的冷门问题时才说"建议咨询辅导员"，大部分常见校园问题知识库里都有，认真查找后回答
-4. 语气自然像学长聊天，自称"通哥"，适当用emoji点缀（每段1-2个）
+4. 语气自然像学长聊天，自称"${nickname}"，适当用emoji点缀（每段1-2个）
 5. 不评价教师、不推校外商业机构、不聊政治宗教话题
 
 【知识库】
