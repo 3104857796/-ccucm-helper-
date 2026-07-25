@@ -903,15 +903,13 @@ async function send() {
     displayText = renderVideo(renderImages(displayText)).replace(/\n/g, '<br>');
     result.bubble.innerHTML = displayText;
     messages.push({ role: 'assistant', content: result.fullText });
-    // 回答完后显示轮转话题
     renderRotatingTopics();
   } catch (err) {
     hideTyping();
-    console.error(err);
-    const fallback = localSearch(text);
+    console.error('API/Network Error:', err.message || err);
+    var fallback = localSearch(text);
     messages.push({ role: 'assistant', content: fallback });
-    addBubble(fallback, 'bot');
-    // 回答完后显示轮转话题
+    addBubble(fallback + '\n\n<span style="font-size:11px;color:#aaa;">（网络波动，已用本地知识库回答）</span>', 'bot');
     renderRotatingTopics();
   }
 
