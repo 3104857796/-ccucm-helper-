@@ -782,11 +782,11 @@ function sendRotatingTopic(q) {
 // === 功能按钮处理 ===
 function handleAction(action) {
   if (action === 'map') {
-    // 校园地图 + 全景VR
-    var mapHtml = '<b>🗺️ 校园地图</b><br><img src="img/jlau/map.jpg" style="width:100%;border-radius:12px;margin:8px 0;" onerror="this.style.display=\'none\'">';
-    mapHtml += '<br><b>🏛️ 全景VR</b><br><div style="display:flex;gap:8px;margin-top:6px;">';
-    mapHtml += '<div style="flex:1;text-align:center;"><img src="img/jlau/vr1.png" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">VR入口一</span></div>';
-    mapHtml += '<div style="flex:1;text-align:center;"><img src="img/jlau/vr2.png" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">VR入口二</span></div>';
+    // 校园地图 + 全景VR（点击可放大/扫码）
+    var mapHtml = '<b>🗺️ 校园地图</b>（点击放大）<br><img src="img/jlau/map.jpg" loading="lazy" style="width:100%;border-radius:12px;margin:8px 0;cursor:pointer;" onclick="showQrModal(\'img/jlau/map.jpg\',\'校园地图\')" onerror="this.style.display=\'none\'">';
+    mapHtml += '<br><b>🏛️ 全景VR</b>（点击二维码放大扫码）<br><div style="display:flex;gap:8px;margin-top:6px;">';
+    mapHtml += '<div style="flex:1;text-align:center;cursor:pointer;" onclick="showQrModal(\'img/jlau/vr1.png\',\'全景VR入口一\')"><img src="img/jlau/vr1.png" loading="lazy" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">点击放大扫码</span></div>';
+    mapHtml += '<div style="flex:1;text-align:center;cursor:pointer;" onclick="showQrModal(\'img/jlau/vr2.png\',\'全景VR入口二\')"><img src="img/jlau/vr2.png" loading="lazy" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">点击放大扫码</span></div>';
     mapHtml += '</div>';
     addBubble(mapHtml, 'bot');
   } else if (action === 'group') {
