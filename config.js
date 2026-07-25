@@ -363,7 +363,7 @@ const SCHOOLS = {
 // ========================================
 const GLOBAL_CONFIG = {
   // API 代理地址（主：Worker，备：Vercel）
-  apiEndpoint: 'https://ccucm-helper-m5lr-euno9467s-xyjj.vercel.app/api/proxy',
+  apiEndpoint: 'https://ccucm-helper-m5lr.vercel.app/api/proxy',
   apiFallback: 'https://campus-bot-proxy.3104857796.workers.dev',
 
   // DeepSeek API（备用直连）
