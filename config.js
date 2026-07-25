@@ -363,7 +363,7 @@ const SCHOOLS = {
 // ========================================
 const GLOBAL_CONFIG = {
   // API 代理地址（Cloudflare Worker）
-  apiEndpoint: 'https://campus-bot-proxy.wooded-roll.workers.dev',
+  apiEndpoint: 'https://campus-bot-proxy.3104857796.workers.dev',
 
   // DeepSeek API（备用直连）
   deepseekApiKey: 'sk-493f9dfed70b43d49c5cd9867bce4ba9',
