@@ -782,11 +782,22 @@ function sendRotatingTopic(q) {
 // === 功能按钮处理 ===
 function handleAction(action) {
   if (action === 'map') {
-    addBubble('🗺️ <b>新生地图</b>功能即将上线，敬请期待～', 'bot');
+    // 校园地图 + 全景VR
+    var mapHtml = '<b>🗺️ 校园地图</b><br><img src="img/jlau/map.jpg" style="width:100%;border-radius:12px;margin:8px 0;" onerror="this.style.display=\'none\'">';
+    mapHtml += '<br><b>🏛️ 全景VR</b><br><div style="display:flex;gap:8px;margin-top:6px;">';
+    mapHtml += '<div style="flex:1;text-align:center;"><img src="img/jlau/vr1.png" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">VR入口一</span></div>';
+    mapHtml += '<div style="flex:1;text-align:center;"><img src="img/jlau/vr2.png" style="width:100%;border-radius:12px;" onerror="this.style.display=\'none\'"><span style="font-size:11px;color:#888;">VR入口二</span></div>';
+    mapHtml += '</div>';
+    addBubble(mapHtml, 'bot');
   } else if (action === 'group') {
-    addBubble('💬 <b>新生群聊</b>功能即将上线，敬请期待～', 'bot');
+    addBubble('💬 <b>新生群聊</b>功能即将上线，敬请期待～<br>学院群、兴趣群等马上就来！', 'bot');
   } else if (action === 'service') {
-    addBubble('📋 <b>业务办理</b>功能即将上线，敬请期待～', 'bot');
+    var svcHtml = '<b>📋 新生一站式服务</b><br><br>';
+    svcHtml += '<b>1. 寝室被褥 🛏️</b><br>解决自带被褥麻烦、学校被褥花色单调、夏天热没有夏凉被、自带被没有军训被罩等问题。通哥提供自选花色款式，线上预定线下配送，配套学校规定统一被套，配有子母被冬暖夏凉～<br>详情关注通哥直播，下方保存小程序码，进小程序挑花色后订单截屏发给通哥即可<br><br>';
+    svcHtml += '<b>2. 二手书租赁 📚</b><br>书后价格三折，比新书更划算，比二手书便宜一半，用完即还，花更少的钱用一样的书～私信通哥填信息表预定即可，军训期间给大家配送<br><br>';
+    svcHtml += '<b>3. 电脑租赁 💻</b><br>月租几百体验不一样的机型，库存覆盖80%，找想要尝试的机型找通哥问价格即可，支持单月租月月换～<br><br>';
+    svcHtml += '<b>4. 新生游玩指南 🗺️</b><br>八月底可领取一份线上周边吃喝玩乐地图指南，并配有学生专属价格优惠，有通哥微信即有机会领取～';
+    addBubble(svcHtml, 'bot');
   }
 }
 
