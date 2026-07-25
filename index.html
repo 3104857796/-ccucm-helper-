@@ -691,7 +691,8 @@ var _hmt = _hmt || [];
       pIcon.textContent = t.passwordIcon;
     }
   }
-  if (t.passwordBtn && pBtn) pBtn.textContent = t.passwordBtn;
+  if (t.passwordBtn && pBtn) { pBtn.textContent = t.passwordBtn; pBtn.style.background = t.btnBg || t.headerGradient; }
+  if (t.passwordTitle && pTitle) { pTitle.style.color = t.btnBg ? t.btnBg.match(/#[0-9A-Fa-f]{6}/)[0] : '#2d545a'; }
   if (pDesc) pDesc.innerHTML = '欢迎来到' + SCHOOL_CONFIG.schoolName + '<br>请输入新生群内的通行码';
   // 密码门背景跟随学校色系
   if (t.bodyBg) { document.getElementById('passGate').style.background = t.bodyBg; }
@@ -1070,7 +1071,9 @@ function applySchoolTheme() {
     }
   }
   var pBtn = document.querySelector('.password-gate button');
-  if (t.passwordBtn && pBtn) pBtn.textContent = t.passwordBtn;
+  if (t.passwordBtn && pBtn) { pBtn.textContent = t.passwordBtn; pBtn.style.background = t.btnBg || t.headerGradient; }
+  var pTitle2 = document.querySelector('.password-gate h2');
+  if (t.passwordTitle && pTitle2) { pTitle2.textContent = t.passwordTitle; pTitle2.style.color = t.btnBg ? t.btnBg.match(/#[0-9A-Fa-f]{6}/)[0] : '#2d545a'; }
   if (t.bodyBg) { document.getElementById('passGate').style.background = t.bodyBg; }
 }
 
