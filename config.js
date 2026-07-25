@@ -11,16 +11,14 @@ const SCHOOLS = {
   // ========================
   cczyy: {
     schoolName: '长春中医药大学',
-    schoolShortName: '长中医',
+    schoolShortName: '长中医白小白',
     botName: '白小白',
     botGreeting: '',
     autoIntro: '欢迎来到长春中医药大学🎓\n白小白竭诚为你服务✨\n\n院系专业、报到流程、食宿开销、选课考证等校园问题24小时随时问答💬\n\n📌 导航栏三大板块：\n🗺️ 校园地图 & 全景VR\n💬 新生群聊（学院群、兴趣群等）\n📋 新生一站式服务\n\n白小白携手表白墙通力为大家搭建最全面的校园信息平台～\n\n我们在长中医等待大家的到来🌿',
     password: 'cczyy2026',
     qrcodeImage: 'qrcode.jpg',
     campusImages: [],
-    qrCodes: [
-      { image: 'qrcode.jpg', label: '新生总群' },
-    ],
+    qrCodes: [],
     theme: {
       headerGradient: 'linear-gradient(180deg, #111a6b 0%, #161c8d 40%, #1e24b0 100%)',
       headerIcon: '<img src="img/cczyy/avatar.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" alt="白小白">',

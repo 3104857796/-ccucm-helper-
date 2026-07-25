@@ -693,6 +693,8 @@ var _hmt = _hmt || [];
   }
   if (t.passwordBtn && pBtn) pBtn.textContent = t.passwordBtn;
   if (pDesc) pDesc.innerHTML = '欢迎来到' + SCHOOL_CONFIG.schoolName + '<br>请输入新生群内的通行码';
+  // 密码门背景跟随学校色系
+  if (t.bodyBg) { document.getElementById('passGate').style.background = t.bodyBg; }
   // 背景图
   if (t.bgImage) {
     var overlay = 'linear-gradient(180deg, rgba(232,240,241,0.9) 0%, rgba(238,243,244,0.9) 30%, rgba(242,245,245,0.9) 60%, rgba(245,247,247,0.9) 100%)';
@@ -1069,6 +1071,7 @@ function applySchoolTheme() {
   }
   var pBtn = document.querySelector('.password-gate button');
   if (t.passwordBtn && pBtn) pBtn.textContent = t.passwordBtn;
+  if (t.bodyBg) { document.getElementById('passGate').style.background = t.bodyBg; }
 }
 
 // === 二维码横幅 ===
