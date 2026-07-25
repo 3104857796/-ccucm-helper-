@@ -367,7 +367,7 @@ const GLOBAL_CONFIG = {
 
   // DeepSeek API（备用直连）
   deepseekApiKey: 'sk-493f9dfed70b43d49c5cd9867bce4ba9',
-  deepseekModel: 'deepseek-chat',
+  deepseekModel: 'deepseek-v4-pro',
   maxHistory: 20,
 
   // 百度统计
