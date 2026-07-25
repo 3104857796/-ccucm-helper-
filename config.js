@@ -362,8 +362,9 @@ const SCHOOLS = {
 // 全局设置
 // ========================================
 const GLOBAL_CONFIG = {
-  // API 代理地址（Cloudflare Worker）
-  apiEndpoint: 'https://campus-bot-proxy.3104857796.workers.dev',
+  // API 代理地址（主：Worker，备：Vercel）
+  apiEndpoint: 'https://ccucm-helper-m5lr-euno9467s-xyjj.vercel.app/api/proxy',
+  apiFallback: 'https://campus-bot-proxy.3104857796.workers.dev',
 
   // DeepSeek API（备用直连）
   deepseekApiKey: 'sk-493f9dfed70b43d49c5cd9867bce4ba9',
@@ -395,6 +396,7 @@ function getCurrentSchool() {
     maxHistory: GLOBAL_CONFIG.maxHistory,
     baiduTongjiId: GLOBAL_CONFIG.baiduTongjiId,
     maxTokens: GLOBAL_CONFIG.maxTokens,
+    apiFallback: GLOBAL_CONFIG.apiFallback,
     schoolId: id,
   };
 }
