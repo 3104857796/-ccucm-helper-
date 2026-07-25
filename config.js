@@ -367,8 +367,9 @@ const GLOBAL_CONFIG = {
 
   // DeepSeek API（备用直连）
   deepseekApiKey: 'sk-493f9dfed70b43d49c5cd9867bce4ba9',
-  deepseekModel: 'deepseek-v4-pro',
+  deepseekModel: 'deepseek-v4-flash',
   maxHistory: 20,
+  maxTokens: 4000,
 
   // 百度统计
   baiduTongjiId: '3993e9a5104c91773de1c9b07662439b',
@@ -393,6 +394,7 @@ function getCurrentSchool() {
     deepseekModel: GLOBAL_CONFIG.deepseekModel,
     maxHistory: GLOBAL_CONFIG.maxHistory,
     baiduTongjiId: GLOBAL_CONFIG.baiduTongjiId,
+    maxTokens: GLOBAL_CONFIG.maxTokens,
     schoolId: id,
   };
 }
