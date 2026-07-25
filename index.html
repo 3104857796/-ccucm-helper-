@@ -938,14 +938,11 @@ ${KNOWLEDGE_BASE}`;
     ...recent,
   ];
 
-  // 如果有 API Key 直接调 DeepSeek，否则走代理
-  var apiUrl, apiHeaders;
-  if (config.deepseekApiKey) {
-    apiUrl = 'https://api.deepseek.com/chat/completions';
+  // 优先走代理（避免CORS），失败则直连
+  var apiUrl = config.apiEndpoint || 'https://api.deepseek.com/chat/completions';
+  var apiHeaders = { 'Content-Type': 'application/json' };
+  if (!config.apiEndpoint && config.deepseekApiKey) {
     apiHeaders = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + config.deepseekApiKey };
-  } else {
-    apiUrl = config.apiEndpoint;
-    apiHeaders = { 'Content-Type': 'application/json' };
   }
 
   const res = await fetch(apiUrl, {
