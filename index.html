@@ -962,7 +962,9 @@ ${KNOWLEDGE_BASE}`;
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let fullText = '';
+  let thinkingText = '';
   const bubble = addBubble('', 'bot');
+  bubble.innerHTML = '<span style="color:#aaa;font-size:12px;">💭 思考中...</span>';
   let buffer = '';
 
   while (true) {
@@ -978,8 +980,12 @@ ${KNOWLEDGE_BASE}`;
       if (dataStr === '[DONE]') continue;
       try {
         const data = JSON.parse(dataStr);
-        const delta = data.choices?.[0]?.delta?.content;
-        if (delta) { fullText += delta; bubble.innerHTML = renderVideo(renderImages(fullText)).replace(/\n/g, '<br>'); scrollDown(); }
+        const delta = data.choices?.[0]?.delta;
+        if (delta?.content) { fullText += delta.content; }
+        if (delta?.reasoning_content) { thinkingText += delta.reasoning_content; }
+        var display = fullText || (thinkingText ? '💭 思考中...' : '');
+        bubble.innerHTML = renderVideo(renderImages(display)).replace(/\n/g, '<br>');
+        scrollDown();
       } catch(e) {}
     }
   }
