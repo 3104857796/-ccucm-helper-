@@ -187,6 +187,13 @@ const SCHOOLS = {
     dormImage: 'img/jlau/dorm.jpg',
     dormImages: ['img/jlau/dorm01.jpg', 'img/jlau/dorm02.jpg', 'img/jlau/dorm03.jpg', 'img/jlau/dorm04.jpg'],
     campusVideo: 'BV1bxgq6jEbx',
+    // 关键词自动配图（jlau专用）
+    keywordImages: {
+      '食堂|美食|好吃|餐厅|吃饭|伙食': ['img/jlau/canteen1.jpg','img/jlau/canteen2.jpg','img/jlau/canteen3.jpg'],
+      '教学楼|教室|上课|综合楼|实验楼|创新楼': ['img/jlau/building.jpg'],
+      '体育馆|体育|运动|操场|篮球|足球': ['img/jlau/gym.jpg'],
+      '快递|驿站|收货|菜鸟': ['img/jlau/express1.jpg','img/jlau/express2.jpg'],
+    },
     qrCodes: [],
     theme: {
       headerGradient: 'linear-gradient(180deg, #2d545a 0%, #3b6971 40%, #4d7f88 100%)',

@@ -798,9 +798,13 @@ function handleAction(action) {
   } else if (action === 'service') {
     var name = SCHOOL_CONFIG.botName === '白小白' ? '小白' : '通哥';
     var svcHtml = '<b>📋 新生一站式服务</b><br><br>';
-    svcHtml += '<b>1. 寝室被褥 🛏️</b><br>解决自带被褥麻烦、学校被褥花色单调等问题，' + name + '提供自选花色款式，线上预定线下配送～详情关注' + name + '直播<br><br>';
-    svcHtml += '<b>2. 二手书租赁 📚</b><br>书后价格三折，比新书更划算，用完即还～私信' + name + '填信息表预定即可，军训期间给大家配送<br><br>';
-    svcHtml += '<b>3. 电脑租赁 💻</b><br>月租几百体验不一样的机型，找' + name + '问价格即可，支持单月租月月换～<br><br>';
+    svcHtml += '<b>1. 寝室被褥 🛏️</b><br>解决自带被褥麻烦、学校被褥花色单调等问题，' + name + '提供自选花色款式，线上预定线下配送～详情关注' + name + '直播<br>';
+    svcHtml += '<div style="display:flex;gap:8px;margin:8px 0;"><img src="img/jlau/bedding1.jpg" loading="lazy" style="width:48%;border-radius:12px;cursor:pointer;" onclick="showQrModal(\'img/jlau/bedding1.jpg\',\'被子花色1\')"><img src="img/jlau/bedding2.jpg" loading="lazy" style="width:48%;border-radius:12px;cursor:pointer;" onclick="showQrModal(\'img/jlau/bedding2.jpg\',\'被子花色2\')"></div><br>';
+    svcHtml += '<b>2. 二手书租赁 📚</b><br>书后价格三折，比新书更划算，用完即还～私信' + name + '填信息表预定即可，军训期间给大家配送<br>';
+    svcHtml += '<img src="img/jlau/books.jpg" loading="lazy" style="width:100%;border-radius:12px;margin:6px 0;cursor:pointer;" onclick="showQrModal(\'img/jlau/books.jpg\',\'二手书\')">';
+    svcHtml += '<video controls preload="none" style="width:100%;max-height:200px;border-radius:12px;margin:4px 0;"><source src="img/jlau/booksvideo.mp4" type="video/mp4"></video><br>';
+    svcHtml += '<b>3. 电脑租赁 💻</b><br>月租几百体验不一样的机型，找' + name + '问价格即可，支持单月租月月换～<br>';
+    svcHtml += '<img src="img/jlau/digital.jpg" loading="lazy" style="width:100%;border-radius:12px;margin:6px 0;cursor:pointer;" onclick="showQrModal(\'img/jlau/digital.jpg\',\'数码租赁\')"><br>';
     svcHtml += '<b>4. 新生游玩指南 🗺️</b><br>八月底可领取一份线上周边吃喝玩乐地图指南，有' + name + '微信即有机会领取～';
     addBubble(svcHtml, 'bot');
   }
@@ -893,8 +897,20 @@ async function send() {
   try {
     const result = await callDeepSeek(messages, SCHOOL_CONFIG);
     hideTyping();
-    // 如果问宿舍/寝室且学校有实拍图，自动追加图片
+    // 关键词自动配图（食堂、教学楼、体育馆、快递等）
     var displayText = result.fullText;
+    if (SCHOOL_CONFIG.keywordImages) {
+      var kwKeys = Object.keys(SCHOOL_CONFIG.keywordImages);
+      for (var ki = 0; ki < kwKeys.length; ki++) {
+        if (new RegExp(kwKeys[ki]).test(text)) {
+          var kwImgs = SCHOOL_CONFIG.keywordImages[kwKeys[ki]];
+          for (var kj = 0; kj < kwImgs.length; kj++) {
+            displayText += '\n[IMG:' + kwImgs[kj] + ']';
+          }
+        }
+      }
+    }
+    // 如果问宿舍/寝室且学校有实拍图，自动追加图片
     if (/宿舍|寝室|住宿|上床下桌/.test(text)) {
       var dormImgs = SCHOOL_CONFIG.dormImages || (SCHOOL_CONFIG.dormImage ? [SCHOOL_CONFIG.dormImage] : []);
       for (var di = 0; di < dormImgs.length; di++) {
